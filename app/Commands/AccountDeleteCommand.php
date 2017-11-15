@@ -14,8 +14,8 @@ class AccountDeleteCommand extends APICommand
     protected $signature = 'account:delete {id? : The Account ID (optional)}
                             {--i|identifier= : The identifier of the account to delete}
                             {--u|username= : The username of the account to delete}
-                            {--j|json-file= : A json file for batch deletions identifier. Takes precedence over other options and arguments}
-                            {--c|csv-file= : A json file for batch deletions based on identifier. Takes precedence over other options and arguments except -j|--json-file}
+                            {--j|json-file= : A json file for batch deletions identifier. Takes precedence over all other options and arguments}
+                            {--c|csv-file= : A csv file for batch deletions based on identifier. Takes precedence over other options and arguments except -j|--json-file}
                             ';
 
     /**
