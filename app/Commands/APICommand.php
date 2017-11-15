@@ -122,6 +122,22 @@ class APICommand extends ProfileCommand
     }
 
     /**
+     * Displays raw data
+     *
+     * @param $data
+     */
+    public function displayData($data)
+    {
+        // Hold onto our ORM session
+        $this->storeORM();
+        // Format some nice JSON
+        $json = json_encode($data, JSON_PRETTY_PRINT);
+        // Print the json
+        $this->info($json);
+    }
+
+
+    /**
      * Displays the API response body
      *
      * @param $response

@@ -2,7 +2,6 @@
 
 namespace App\Commands;
 
-
 use OpenResourceManager\Client\Account as AccountClient;
 
 class AccountDeleteCommand extends APICommand
@@ -15,6 +14,8 @@ class AccountDeleteCommand extends APICommand
     protected $signature = 'account:delete {id? : The Account ID (optional)}
                             {--i|identifier= : The identifier of the account to delete}
                             {--u|username= : The username of the account to delete}
+                            {--j|json-file= : A json file for batch deletions identifier. Takes precedence over other options and arguments}
+                            {--c|csv-file= : A json file for batch deletions based on identifier. Takes precedence over other options and arguments except -j|--json-file}
                             ';
 
     /**
@@ -32,9 +33,7 @@ class AccountDeleteCommand extends APICommand
     protected $description = 'Delete an ORM Account by it\'s id, identifier, or username.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * AccountDeleteCommand constructor.
      */
     public function __construct()
     {
@@ -53,22 +52,58 @@ class AccountDeleteCommand extends APICommand
         $id = $this->argument('id');
         $identifier = $this->option('identifier');
         $username = $this->option('username');
+        $jsonFile = $this->option('json-file');
+        $csvFile = $this->option('csv-file');
 
         $accountClient = new AccountClient($this->orm);
-        $response = null;
 
-        if (empty($id)) {
-            if (empty($identifier) && empty($username)) {
-                $this->error('No identifying information found. Provide an id, identifier, or username.');
-            } elseif (!empty($identifier)) {
-                $response = $accountClient->deleteFromIdentifier($identifier);
-            } elseif (!empty($username)) {
-                $response = $accountClient->deleteFromUsername($username);
+        if (empty($jsonFile)) {
+            if (empty($csvFile)) {
+                $response = null;
+                if (empty($id)) {
+                    if (empty($identifier) && empty($username)) {
+                        $this->error('No identifying information found. Provide an id, identifier, or username.');
+                    } elseif (!empty($identifier)) {
+                        $response = $accountClient->deleteFromIdentifier($identifier);
+                    } elseif (!empty($username)) {
+                        $response = $accountClient->deleteFromUsername($username);
+                    }
+                } else {
+                    $response = $accountClient->delete($id);
+                }
+
+                $this->displayResponseCode($response);
+
+            } else {
+                $data = [];
+                // csv file stuff
+                // read the csv file line by line
+                foreach (file($csvFile) as $i) {
+                    $i = trim($i, " \t\n\r\0\x0B,");
+                    // if it is not empty
+                    if (!empty($i)) {
+                        // delete the identifier
+                        $response = $accountClient->deleteFromIdentifier($i);
+                        // store the identifier in an array under the response code
+                        $data[$response->code][] = $i;
+                    }
+                }
+                $this->displayData($data);
             }
         } else {
-            $response = $accountClient->delete($id);
+            // json file stuff
+            $identifiers = json_decode(file_get_contents($jsonFile));
+            $data = [];
+            foreach ($identifiers as $i) {
+                $i = trim($i, " \t\n\r\0\x0B,");
+                if (!empty($i)) {
+                    // delete the identifier
+                    $response = $accountClient->deleteFromIdentifier($i);
+                    // store the identifier in an array under the response code
+                    $data[$response->code][] = $i;
+                }
+            }
+            $this->displayData($data);
         }
-
-        $this->displayResponseCode($response);
     }
 }
