@@ -57,7 +57,7 @@ class ProfileStoreCommand extends ORMCommand
         // If we don't have an email address ask for one
         if (empty($email)) $email = $this->ask('ORM email? (eg: you@example.com)');
         // Make a new validation constructor
-        $validator = $this->validation->make(['email' => $email], ['email' => 'required|email|unique:orm_profiles']);
+        $validator = $this->validation->make(['email' => $email], ['email' => 'required|email']);
         // Do we pass validation?
         if ($validator->fails()) {
             // Get the errors for email
@@ -67,9 +67,6 @@ class ProfileStoreCommand extends ORMCommand
                 switch ($error) {
                     case 'validation.email':
                         $this->error('The address that you entered is not a valid email address.');
-                        break;
-                    case 'validation.unique':
-                        $this->error('The address that you entered already belongs to a stored profile.');
                         break;
                     case 'validation.required':
                         $this->error('No email address was provided!');
@@ -97,7 +94,7 @@ class ProfileStoreCommand extends ORMCommand
         // If we don't have an email address ask for one
         if (empty($secret)) $secret = $this->secret('ORM API secret? (eg: i0svwyrpu9ve)');
         // Make a new validation constructor
-        $validator = $this->validation->make(['secret' => $secret], ['secret' => 'required|string|unique:orm_profiles']);
+        $validator = $this->validation->make(['secret' => $secret], ['secret' => 'required|string']);
         // Do we pass validation?
         if ($validator->fails()) {
             // Get the errors for secret
@@ -107,9 +104,6 @@ class ProfileStoreCommand extends ORMCommand
                 switch ($error) {
                     case 'validation.string':
                         $this->error('The secret that you entered is not a valid string');
-                        break;
-                    case 'validation.unique':
-                        $this->error('The secret that you entered already belongs to a stored profile.');
                         break;
                     case 'validation.required':
                         $this->error('No secret was provided!');

@@ -16,8 +16,8 @@ class CreateOrmProfilesTable extends Migration
         Schema::create('orm_profiles', function ($table) {
             $table->increments('id');
             $table->boolean('active')->default(false);
-            $table->string('email')->unique();
-            $table->string('secret')->unique();
+            $table->string('email');
+            $table->string('secret');
             $table->string('host');
             $table->integer('port')->default(80);
             $table->integer('version')->default(1);

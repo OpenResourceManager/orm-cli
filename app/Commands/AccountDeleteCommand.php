@@ -94,6 +94,8 @@ class AccountDeleteCommand extends APICommand
             // json file stuff
             $identifiers = json_decode(file_get_contents($jsonFile));
             $data = [];
+            $count = 0;
+            $max = 500;
             foreach ($identifiers as $i) {
                 $i = trim($i, " \t\n\r\0\x0B,");
                 if (!empty($i)) {

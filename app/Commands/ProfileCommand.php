@@ -80,10 +80,13 @@ class ProfileCommand extends ORMCommand
 
         if (!empty($profiles)) {
             foreach ($profiles as $profile) {
+                $protocol = ($profile->use_ssl) ? 'https://' : 'http://';
+                $slug = ':' . $profile->port . '/api/v' . $profile->version;
+                $url = $protocol . $profile->host . $slug;
                 if ($profile->active) {
-                    $options[$profile->id] = $profile->id . ' ' . $profile->email . '   <---(active';
+                    $options[$profile->id] = $profile->id . ' ' . $profile->email . ' - ' . $url . ' <---(active';
                 } else {
-                    $options[$profile->id] = $profile->id . ' ' . $profile->email;
+                    $options[$profile->id] = $profile->id . ' ' . $profile->email . ' - ' . $url;
                 }
             }
             return intval(explode(' ', $this->choice('Select a profile', $options))[0]);
