@@ -86,6 +86,8 @@ class AccountDeleteCommand extends APICommand
                         $response = $accountClient->deleteFromIdentifier($i);
                         // store the identifier in an array under the response code
                         $data[$response->code][] = $i;
+                        // sleep a bit to avoid spamming the API
+                        usleep(125000);
                     }
                 }
                 $this->displayData($data);
@@ -94,8 +96,6 @@ class AccountDeleteCommand extends APICommand
             // json file stuff
             $identifiers = json_decode(file_get_contents($jsonFile));
             $data = [];
-            $count = 0;
-            $max = 500;
             foreach ($identifiers as $i) {
                 $i = trim($i, " \t\n\r\0\x0B,");
                 if (!empty($i)) {
@@ -103,6 +103,8 @@ class AccountDeleteCommand extends APICommand
                     $response = $accountClient->deleteFromIdentifier($i);
                     // store the identifier in an array under the response code
                     $data[$response->code][] = $i;
+                    // sleep a bit to avoid spamming the API
+                    usleep(125000);
                 }
             }
             $this->displayData($data);
