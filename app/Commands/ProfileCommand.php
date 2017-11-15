@@ -77,14 +77,20 @@ class ProfileCommand extends ORMCommand
     {
         $profiles = json_decode(json_encode($profiles, true));
         $options = [];
-        foreach ($profiles as $profile) {
-            if ($profile->active) {
-                $options[$profile->id] = $profile->id . ' ' . $profile->email . '   <---(active';
-            } else {
-                $options[$profile->id] = $profile->id . ' ' . $profile->email;
+
+        if (!empty($profiles)) {
+            foreach ($profiles as $profile) {
+                if ($profile->active) {
+                    $options[$profile->id] = $profile->id . ' ' . $profile->email . '   <---(active';
+                } else {
+                    $options[$profile->id] = $profile->id . ' ' . $profile->email;
+                }
             }
+            return intval(explode(' ', $this->choice('Select a profile', $options))[0]);
+        } else {
+            $this->warn('No profiles found... hint: orm profile:store');
+            die();
         }
-        return intval(explode(' ', $this->choice('Select a profile', $options))[0]);
     }
 
     /**

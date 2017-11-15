@@ -6,18 +6,18 @@ namespace App\Commands;
 use Carbon\Carbon;
 use OpenResourceManager\Client\Account as AccountClient;
 
-class AccountStoreCommand extends APICommand
+class AccountPatchCommand extends APICommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'account:store
+    protected $signature = 'account:patch
                             {identifier : Unique identifier for account}
-                            {username : Unique username for account. Must be unique across all accounts, alias accounts, and service accounts}
-                            {name-first : The first name of the account owner}
-                            {name-last :  The last name of the account owner}
+                            {--username= : Unique username for account. Must be unique across all accounts, alias accounts, and service accounts}
+                            {--name-first= : The first name of the account owner}
+                            {--name-last= :  The last name of the account owner}
                             {--name-middle= : The middle name of the account owner}
                             {--name-prefix= : Optional name prefix}
                             {--name-postfix= : Optional name postfix}
@@ -46,7 +46,7 @@ class AccountStoreCommand extends APICommand
      *
      * @var string
      */
-    protected $description = 'Store account information. Creates, updates, restores, an account based on it\'s current status.';
+    protected $description = 'Update existing account information based in it\'s identifier.';
 
     /**
      * Create a new command instance.
@@ -70,15 +70,11 @@ class AccountStoreCommand extends APICommand
         $response = null;
 
         $identifier = $this->argument('identifier');
-        $username = $this->argument('username');
-        $nameFirst = $this->argument('name-first');
-        $nameLast = $this->argument('name-last');
+        $username = $this->option('username');
+        $nameFirst = $this->option('name-first');
+        $nameLast = $this->option('name-last');
         $primaryDutyID = $this->option('primary-duty-id');
         $primaryDutyCode = $this->option('primary-duty-code');
-        if (empty($primaryDutyCode) && empty($primaryDutyID)) {
-            $this->error('Provide a primary-duty-id or primary-duty-code');
-            die();
-        }
         $loadStatusID = $this->option('load-status-id');
         $loadStatusCode = $this->option('load-status-code');
         $ssn = $this->option('ssn');
@@ -97,7 +93,7 @@ class AccountStoreCommand extends APICommand
 
         $accountClient = new AccountClient($this->orm);
 
-        $response = $accountClient->store(
+        $response = $accountClient->patch(
             $identifier,
             $username,
             $namePrefix,
