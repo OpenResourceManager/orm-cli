@@ -4,7 +4,6 @@
 .twgit_features_subject
 
 /builds/
-/database/
 ### Windows template
 # Windows thumbnail cache files
 Thumbs.db
