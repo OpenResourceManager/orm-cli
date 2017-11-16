@@ -15,7 +15,6 @@ class AccountDeleteCommand extends APICommand
                             {--i|identifier= : The identifier of the account to delete}
                             {--u|username= : The username of the account to delete}
                             {--j|json-file= : A json file for batch deletions identifier. Takes precedence over all other options and arguments}
-                            {--c|csv-file= : A csv file for batch deletions based on identifier. Takes precedence over other options and arguments except -j|--json-file}
                             ';
 
     /**
@@ -53,12 +52,10 @@ class AccountDeleteCommand extends APICommand
         $identifier = $this->option('identifier');
         $username = $this->option('username');
         $jsonFile = $this->option('json-file');
-        $csvFile = $this->option('csv-file');
 
         $accountClient = new AccountClient($this->orm);
 
         if (empty($jsonFile)) {
-            if (empty($csvFile)) {
                 $response = null;
                 if (empty($id)) {
                     if (empty($identifier) && empty($username)) {
@@ -73,25 +70,6 @@ class AccountDeleteCommand extends APICommand
                 }
 
                 $this->displayResponseCode($response);
-
-            } else {
-                $data = [];
-                // csv file stuff
-                // read the csv file line by line
-                foreach (file($csvFile) as $i) {
-                    $i = trim($i, " \t\n\r\0\x0B,");
-                    // if it is not empty
-                    if (!empty($i)) {
-                        // delete the identifier
-                        $response = $accountClient->deleteFromIdentifier($i);
-                        // store the identifier in an array under the response code
-                        $data[$response->code][] = $i;
-                        // sleep a bit to avoid spamming the API
-                        usleep(125000);
-                    }
-                }
-                $this->displayData($data);
-            }
         } else {
             // json file stuff
             $identifiers = json_decode(file_get_contents($jsonFile));
