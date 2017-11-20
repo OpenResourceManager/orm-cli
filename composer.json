@@ -19,7 +19,7 @@
         "illuminate/filesystem": "5.5.*",
         "illuminate/validation": "^5.5",
         "laravel-zero/framework": "4.0.*",
-        "open-resource-manager/client-php": "dev-master"
+        "open-resource-manager/client-php": "~1.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
