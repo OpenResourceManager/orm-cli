@@ -5,7 +5,7 @@ if (!defined('BASE_PATH')) {
 }
 
 if (!defined('VALID_CODES')) {
-    define('VALID_CODES', [200, 201, 202, 204]);
+    define('VALID_CODES', [200, 201, 202, 204, 422]);
 }
 
 // Defines the ORM home based on OS
