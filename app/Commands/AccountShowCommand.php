@@ -30,7 +30,7 @@ class AccountShowCommand extends APICommand
      *
      * @var string
      */
-    protected $description = 'Show an ORM Account by it\'s id, identifier, or username. Displays a paginated list when those parameters are omitted, a page parameter is available.';
+    protected $description = 'Show an ORM Account by it\'s ID, identifier, or username. Displays a paginated list when those parameters are omitted, a page parameter is available.';
 
     /**
      * Create a new command instance.
