@@ -33,9 +33,7 @@ class AccountShowCommand extends APICommand
     protected $description = 'Show an ORM Account by it\'s ID, identifier, or username. Displays a paginated list when those parameters are omitted, a page parameter is available.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * AccountShowCommand constructor.
      */
     public function __construct()
     {
@@ -45,7 +43,7 @@ class AccountShowCommand extends APICommand
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle(): void
     {

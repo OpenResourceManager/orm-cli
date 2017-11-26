@@ -43,9 +43,7 @@ class ORMCommand extends Command
     protected $validation;
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * ORMCommand constructor.
      */
     public function __construct()
     {
@@ -60,7 +58,7 @@ class ORMCommand extends Command
      *
      * @return Factory
      */
-    private function initValidator()
+    private function initValidator(): Factory
     {
         $capsule = new Capsule;
         $capsule->addConnection([
@@ -76,9 +74,9 @@ class ORMCommand extends Command
     }
 
     /**
-     * Execute the console command.
+     * Execute the console command
      *
-     * @return mixed
+     * @return void
      */
     public function handle(): void
     {

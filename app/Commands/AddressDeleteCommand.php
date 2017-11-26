@@ -29,7 +29,7 @@ class AddressDeleteCommand extends APICommand
     protected $description = 'Delete an Address by it\'s id.';
 
     /**
-     * AccountDeleteCommand constructor.
+     * AddressDeleteCommand constructor.
      */
     public function __construct()
     {
@@ -39,7 +39,7 @@ class AddressDeleteCommand extends APICommand
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle(): void
     {

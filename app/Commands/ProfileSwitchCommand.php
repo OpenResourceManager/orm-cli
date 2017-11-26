@@ -26,9 +26,7 @@ class ProfileSwitchCommand extends ProfileCommand
     protected $description = 'Switch the currently active ORM profile';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * ProfileSwitchCommand constructor.
      */
     public function __construct()
     {
@@ -38,7 +36,7 @@ class ProfileSwitchCommand extends ProfileCommand
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle(): void
     {

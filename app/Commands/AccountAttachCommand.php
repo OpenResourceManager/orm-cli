@@ -41,7 +41,7 @@ class AccountAttachCommand extends APICommand
     protected $description = 'Attach an ORM Account by it\'s id, identifier, or username to a duty, course, school, department, or room by their ID or code.';
 
     /**
-     * AccountDeleteCommand constructor.
+     * AccountAttachCommand constructor.
      */
     public function __construct()
     {
@@ -51,7 +51,7 @@ class AccountAttachCommand extends APICommand
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle(): void
     {

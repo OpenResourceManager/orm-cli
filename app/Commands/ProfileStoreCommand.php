@@ -36,9 +36,7 @@ class ProfileStoreCommand extends ORMCommand
     protected $description = 'Stores ORM API credentials and server information';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * ProfileStoreCommand constructor.
      */
     public function __construct()
     {
@@ -53,7 +51,7 @@ class ProfileStoreCommand extends ORMCommand
      * @param string $email
      * @return string
      */
-    private function getEmail($email = '')
+    private function getEmail($email = ''): string
     {
         // If we don't have an email address ask for one
         if (empty($email)) $email = $this->ask('ORM email? (eg: you@example.com)');
@@ -90,7 +88,7 @@ class ProfileStoreCommand extends ORMCommand
      * @param string $secret
      * @return string
      */
-    private function getSecret($secret = '')
+    private function getSecret($secret = ''): string
     {
         // If we don't have an email address ask for one
         if (empty($secret)) $secret = $this->secret('ORM API secret? (eg: i0svwyrpu9ve)');
@@ -127,7 +125,7 @@ class ProfileStoreCommand extends ORMCommand
      * @param string $host
      * @return string
      */
-    private function getHost($host = '')
+    private function getHost($host = ''): string
     {
         if (empty($host)) $host = $this->anticipate('ORM API host? (eg: orm.example.com)', ['localhost']);
         $validator = $this->validation->make(['host' => $host], ['host' => 'required|string']);
@@ -160,9 +158,9 @@ class ProfileStoreCommand extends ORMCommand
      * Gets and validates the host port
      *
      * @param int $port
-     * @return int|string
+     * @return int
      */
-    private function getPort($port = 0)
+    private function getPort($port = 0): int
     {
         if (empty($port)) $port = $this->anticipate('ORM API port?', [80, 443]);
         $validator = $this->validation->make(['port' => $port], ['port' => 'required|integer']);
@@ -198,7 +196,7 @@ class ProfileStoreCommand extends ORMCommand
      * @param int $ttl
      * @return int
      */
-    private function getTTL($ttl = 59)
+    private function getTTL($ttl = 59): int
     {
         if (empty($ttl)) $ttl = $this->anticipate('ORM API token TTL? Generally 1 minute less than the JWT ttl on the ORM server. (eg: 59)', [59]);
         $validator = $this->validation->make(['ttl' => $ttl], ['ttl' => 'required|integer']);
@@ -235,8 +233,9 @@ class ProfileStoreCommand extends ORMCommand
      * @param string $version
      * @param bool $use_ssl
      * @param int $ttl
+     * @return void
      */
-    private function storeProfile($email, $secret, $host, $port, $version, $use_ssl, $ttl)
+    private function storeProfile($email, $secret, $host, $port, $version, $use_ssl, $ttl): void
     {
         $this->info('Storing profile...');
         $bar = $this->output->createProgressBar(1);
@@ -274,7 +273,7 @@ class ProfileStoreCommand extends ORMCommand
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle(): void
     {

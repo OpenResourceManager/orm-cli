@@ -42,9 +42,7 @@ class APICommand extends ProfileCommand
     protected $sessionKey;
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * APICommand constructor.
      */
     public function __construct()
     {
@@ -56,8 +54,9 @@ class APICommand extends ProfileCommand
      *
      * @param $response
      * @throws Exception
+     * @return void
      */
-    public function displayResponse($response)
+    public function displayResponse($response): void
     {
         // Verify that the API returned a 200 http code
         if (in_array($response->code, VALID_CODES, true)) {
@@ -76,8 +75,9 @@ class APICommand extends ProfileCommand
      * Displays raw data
      *
      * @param $data
+     * @return void
      */
-    public function displayData($data)
+    public function displayData($data): void
     {
         // Format some nice JSON
         $json = json_encode($data, JSON_PRETTY_PRINT);
@@ -90,8 +90,9 @@ class APICommand extends ProfileCommand
      *
      * @param $response
      * @throws Exception
+     * @return void
      */
-    public function displayResponseBody($response)
+    public function displayResponseBody($response): void
     {
         // Verify that the API returned a 200 http code
         if (in_array($response->code, VALID_CODES, true)) {
@@ -111,8 +112,9 @@ class APICommand extends ProfileCommand
      *
      * @param $response
      * @throws Exception
+     * @return void
      */
-    public function displayResponseData($response)
+    public function displayResponseData($response): void
     {
         // Verify that the API returned a 200 http code
         if (in_array($response->code, VALID_CODES, true)) {
@@ -132,8 +134,9 @@ class APICommand extends ProfileCommand
      *
      * @param $response
      * @throws Exception
+     * @return void
      */
-    public function displayResponseCode($response)
+    public function displayResponseCode($response): void
     {
         // Verify that the API returned a 200 http code
         if (in_array($response->code, VALID_CODES, true)) {
@@ -149,9 +152,19 @@ class APICommand extends ProfileCommand
     }
 
 
-    public function cacheORM($orm)
+    /**
+     * Cache ORM object
+     *
+     * Stores an ORM object in the cache
+     *
+     * @param $orm
+     * @return void
+     */
+    public function cacheORM($orm): void
     {
-        if ($orm->jwt !== $this->orm->jwt) {
+        if (empty($this->orm)) {
+            Cache::put($this->sessionKey, serialize($orm), $this->profile->ttl);
+        } else if ($orm->jwt !== $this->orm->jwt) {
             Cache::put($this->sessionKey, serialize($orm), $this->profile->ttl);
         }
     }
@@ -159,7 +172,7 @@ class APICommand extends ProfileCommand
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle(): void
     {

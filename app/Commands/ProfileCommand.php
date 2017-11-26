@@ -22,9 +22,7 @@ class ProfileCommand extends ORMCommand
     protected $description = '';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * ProfileCommand constructor.
      */
     public function __construct()
     {
@@ -36,7 +34,7 @@ class ProfileCommand extends ORMCommand
      *
      * @return mixed
      */
-    public function getProfiles()
+    public function getProfiles(): mixed
     {
         return DB::table('orm_profiles')->get();
     }
@@ -46,7 +44,7 @@ class ProfileCommand extends ORMCommand
      *
      * @return mixed
      */
-    public function getActiveProfile()
+    public function getActiveProfile(): mixed
     {
         $profile = false;
         $profiles = DB::select('select * from orm_profiles where active = 1');
@@ -73,7 +71,7 @@ class ProfileCommand extends ORMCommand
      * @param $profiles
      * @return int
      */
-    public function offerProfiles($profiles)
+    public function offerProfiles($profiles): int
     {
         $profiles = json_decode(json_encode($profiles, true));
         $options = [];
@@ -102,7 +100,7 @@ class ProfileCommand extends ORMCommand
      * @param $profiles
      * @param $id
      */
-    public function switchProfiles($profiles, $id)
+    public function switchProfiles($profiles, $id): void
     {
         $this->info('Switching active profile');
         foreach ($profiles as $profile) {
@@ -121,7 +119,7 @@ class ProfileCommand extends ORMCommand
      *
      * @param $id
      */
-    public function deleteProfile($id)
+    public function deleteProfile($id): void
     {
         $this->info('Deleting profile');
         DB::delete('delete from orm_profiles WHERE id = ?', [$id]);

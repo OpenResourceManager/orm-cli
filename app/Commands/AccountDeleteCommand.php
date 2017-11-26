@@ -42,7 +42,7 @@ class AccountDeleteCommand extends APICommand
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle(): void
     {

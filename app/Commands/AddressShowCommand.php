@@ -34,9 +34,7 @@ class AddressShowCommand extends APICommand
     protected $description = 'Show an Address by it\'s ID, account ID, identifier, or username. Displays a paginated list when those parameters are omitted, a page parameter is available.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * AddressShowCommand constructor.
      */
     public function __construct()
     {
@@ -46,7 +44,7 @@ class AddressShowCommand extends APICommand
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle(): void
     {

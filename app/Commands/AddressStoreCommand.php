@@ -46,9 +46,7 @@ class AddressStoreCommand extends APICommand
     protected $description = 'Store an address. Creates, updates, restores, an address based on it\'s current status.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * AddressStoreCommand constructor.
      */
     public function __construct()
     {
@@ -58,7 +56,7 @@ class AddressStoreCommand extends APICommand
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle(): void
     {

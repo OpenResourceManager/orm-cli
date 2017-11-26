@@ -26,9 +26,7 @@ class ProfileDeleteCommand extends ProfileCommand
     protected $description = 'Delete a stored ORM profile';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * ProfileDeleteCommand constructor.
      */
     public function __construct()
     {
@@ -38,7 +36,7 @@ class ProfileDeleteCommand extends ProfileCommand
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle(): void
     {

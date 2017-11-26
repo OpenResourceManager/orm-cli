@@ -49,9 +49,7 @@ class AccountPatchCommand extends APICommand
     protected $description = 'Update existing account information based in it\'s identifier.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * AccountPatchCommand constructor.
      */
     public function __construct()
     {
@@ -61,7 +59,7 @@ class AccountPatchCommand extends APICommand
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle(): void
     {

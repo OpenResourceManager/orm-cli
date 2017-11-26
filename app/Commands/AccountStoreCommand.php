@@ -49,9 +49,7 @@ class AccountStoreCommand extends APICommand
     protected $description = 'Store account information. Creates, updates, restores, an account based on it\'s current status.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * AccountStoreCommand constructor.
      */
     public function __construct()
     {
@@ -61,7 +59,7 @@ class AccountStoreCommand extends APICommand
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle(): void
     {

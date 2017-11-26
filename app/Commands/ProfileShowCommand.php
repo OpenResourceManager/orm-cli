@@ -26,9 +26,7 @@ class ProfileShowCommand extends ProfileCommand
     protected $description = 'Displays stored profiles';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * ProfileShowCommand constructor.
      */
     public function __construct()
     {
@@ -38,7 +36,7 @@ class ProfileShowCommand extends ProfileCommand
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle(): void
     {
