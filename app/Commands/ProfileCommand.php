@@ -42,9 +42,9 @@ class ProfileCommand extends ORMCommand
     /**
      * Gets the active profile
      *
-     * @return mixed
+     * @return \stdClass
      */
-    public function getActiveProfile(): mixed
+    public function getActiveProfile(): \stdClass
     {
         $profile = false;
         $profiles = DB::select('select * from orm_profiles where active = 1');
