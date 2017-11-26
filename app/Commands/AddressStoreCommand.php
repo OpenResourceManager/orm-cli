@@ -86,6 +86,8 @@ class AddressStoreCommand extends APICommand
             $this->option('longitude')
         );
 
+        // Cache the current ORM object
+        $this->cacheORM($addressClient->getORM());
         $this->displayResponseBody($response);
     }
 }

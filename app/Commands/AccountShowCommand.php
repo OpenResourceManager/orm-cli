@@ -74,6 +74,8 @@ class AccountShowCommand extends APICommand
             $response = $accountClient->get($id);
         }
 
+        // Cache the current ORM object
+        $this->cacheORM($accountClient->getORM());
         $this->displayResponseBody($response);
     }
 }

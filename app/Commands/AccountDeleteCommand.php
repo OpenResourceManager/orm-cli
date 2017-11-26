@@ -85,6 +85,8 @@ class AccountDeleteCommand extends APICommand
                     usleep(125000);
                 }
             }
+            // Cache the current ORM object
+            $this->cacheORM($accountClient->getORM());
             $this->displayData($data);
         }
     }

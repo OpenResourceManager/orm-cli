@@ -79,6 +79,8 @@ class AddressShowCommand extends APICommand
             $response = $addressClient->get($id);
         }
 
+        // Cache the current ORM object
+        $this->cacheORM($addressClient->getORM());
         $this->displayResponseBody($response);
     }
 }

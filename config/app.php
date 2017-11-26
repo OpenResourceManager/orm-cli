@@ -52,7 +52,25 @@ return [
      * Enjoy all the power of Laravel on your console.
      */
     'providers' => [
+        /*
+         * Laravel Framework Service Providers...
+         */
+        Illuminate\Cache\CacheServiceProvider::class,
+        Illuminate\Validation\ValidationServiceProvider::class,
+
+        /*
+         * Package Service Providers...
+         */
+
+        /*
+         * Application Service Providers...
+         */
         App\Providers\AppServiceProvider::class,
-        Illuminate\Validation\ValidationServiceProvider::class
+
     ],
+
+    'aliases' => [
+        'Cache' => Illuminate\Support\Facades\Cache::class,
+        'Validator' => Illuminate\Support\Facades\Validator::class,
+    ]
 ];

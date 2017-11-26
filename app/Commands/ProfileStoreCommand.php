@@ -18,6 +18,7 @@ class ProfileStoreCommand extends ORMCommand
                             {--p|port= : Your ORM API port}
                             {--a|api-version= : Your ORM API version}
                             {--s|ssl : Connect to ORM via HTTPS}
+                            {--t|ttl : ORM session ttl}
                             ';
 
     /**
@@ -179,13 +180,49 @@ class ProfileStoreCommand extends ORMCommand
                         $this->error('No port was provided!');
                         break;
                     default:
-                        $this->error('Error validating host address.');
+                        $this->error('Error validating host port.');
                 }
             }
             $this->warn('Try again.');
-            $port = $this->getHost();
+            $port = $this->getPort();
         }
         return $port;
+    }
+
+
+    /**
+     * Gathers host session ttl
+     *
+     * Gets and validates the host token ttl
+     *
+     * @param int $ttl
+     * @return int
+     */
+    private function getTTL($ttl = 59)
+    {
+        if (empty($ttl)) $ttl = $this->anticipate('ORM API token TTL? Generally 1 minute less than the JWT ttl on the ORM server. (eg: 59)', [59]);
+        $validator = $this->validation->make(['ttl' => $ttl], ['ttl' => 'required|integer']);
+        // Do we pass validation?
+        if ($validator->fails()) {
+            // Get the errors for the ttl value
+            $errors = $validator->errors()->getMessages()['ttl'];
+            foreach ($errors as $error) {
+                // Loop over them and provide a contextual message based on the error type
+                switch ($error) {
+                    case 'validation.integer':
+                        $this->error('The TTL that you entered is not a valid integer.');
+                        break;
+                    case 'validation.required':
+                        $this->error('No TTL was provided!');
+                        break;
+                    default:
+                        $this->error('Error validating TTL.');
+                }
+            }
+            $this->warn('Try again.');
+            $ttl = $this->getTTL();
+        }
+        return $ttl;
     }
 
     /**
@@ -197,8 +234,9 @@ class ProfileStoreCommand extends ORMCommand
      * @param int $port
      * @param string $version
      * @param bool $use_ssl
+     * @param int $ttl
      */
-    private function storeProfile($email, $secret, $host, $port, $version, $use_ssl)
+    private function storeProfile($email, $secret, $host, $port, $version, $use_ssl, $ttl)
     {
         $this->info('Storing profile...');
         $bar = $this->output->createProgressBar(1);
@@ -224,6 +262,7 @@ class ProfileStoreCommand extends ORMCommand
                 'port' => $port,
                 'version' => $version,
                 'use_ssl' => $use_ssl,
+                'ttl' => $ttl,
                 'created_at' => $now,
                 'updated_at' => $now
             ]
@@ -263,8 +302,10 @@ class ProfileStoreCommand extends ORMCommand
             $use_ssl = $this->confirm('Use HTTPS?') ? true : false;
         }
 
+        $ttl = $this->getTTL($this->option('ttl'));
+
         $this->info('Options seem valid!');
         // Store the profile
-        $this->storeProfile($email, $secret, $host, $port, $version, $use_ssl);
+        $this->storeProfile($email, $secret, $host, $port, $version, $use_ssl, $ttl);
     }
 }

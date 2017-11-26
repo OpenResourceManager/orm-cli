@@ -23,6 +23,12 @@ class AppServiceProvider extends ServiceProvider
             touch(ORM_DB_PATH);
             chmod(ORM_DB_PATH, 0640);
         }
+
+        // Makes sure that the ORM Cache Dir exists
+        if (!file_exists(ORM_CACHE_PATH)) {
+            mkdir(ORM_CACHE_PATH, 0740, true);
+        }
+
     }
 
     /**

@@ -157,6 +157,8 @@ class AccountDetachCommand extends APICommand
             ];
         }
 
+        // Cache the current ORM object
+        $this->cacheORM($accountClient->getORM());
         $this->displayData($responses);
     }
 }

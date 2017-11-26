@@ -3,9 +3,8 @@
 namespace App\Commands;
 
 use OpenResourceManager\ORM;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use Exception;
-use Carbon\Carbon;
 
 class APICommand extends ProfileCommand
 {
@@ -31,11 +30,16 @@ class APICommand extends ProfileCommand
     protected $orm;
 
     /**
-     * ORM Session Data
+     * The current profile
      *
-     * @var array
+     * @var
      */
-    protected $session_data = [];
+    protected $profile;
+
+    /**
+     * @var string
+     */
+    protected $sessionKey;
 
     /**
      * Create a new command instance.
@@ -47,57 +51,6 @@ class APICommand extends ProfileCommand
         parent::__construct();
     }
 
-    private function initORM()
-    {
-        $profile = $this->getActiveProfile();
-        $data = [];
-        if ($profile) {
-            $data['profile_id'] = $profile->id;
-            // Try to get a previous session
-            $session = DB::select('select * from orm_sessions where profile_id = ?', [$profile->id]);
-            if ($session) {
-                $data['session_id'] = $session[0]->id;
-                // If we have a previous session get it
-                $orm = unserialize($session[0]->orm);
-            } else {
-                $data['session_id'] = null;
-                // If not create a new one
-                $orm = new ORM($profile->secret, $profile->host, $profile->version, $profile->port, $profile->use_ssl);
-            }
-            $data['orm'] = $orm;
-            $this->orm = $orm;
-            $this->session_data = $data;
-            return $data;
-        } else {
-            $this->error('No active ORM profiles found. Create one.');
-            die();
-        }
-    }
-
-    public function storeORM()
-    {
-        $now = Carbon::now('UTC')->toDateTimeString();
-        $orm = $this->orm;
-        $session_id = $this->session_data['session_id'];
-        $profile_id = $this->session_data['profile_id'];
-
-        if (!empty($session_id)) {
-            DB::update('update orm_sessions set orm = ?, updated_at = ? where id = ?', [serialize($orm), $now, $session_id]);
-        } else if (!empty($profile_id)) {
-            DB::table('orm_sessions')->insert(
-                [
-                    'orm' => serialize($orm),
-                    'profile_id' => $profile_id,
-                    'created_at' => $now,
-                    'updated_at' => $now
-                ]
-            );
-        } else {
-            $this->error('Failed to store session, missing profile id!');
-            die();
-        }
-    }
-
     /**
      * Displays the entire API response
      *
@@ -106,8 +59,6 @@ class APICommand extends ProfileCommand
      */
     public function displayResponse($response)
     {
-        // Hold onto our ORM session
-        $this->storeORM();
         // Verify that the API returned a 200 http code
         if (in_array($response->code, VALID_CODES, true)) {
             // Format some nice JSON
@@ -128,14 +79,11 @@ class APICommand extends ProfileCommand
      */
     public function displayData($data)
     {
-        // Hold onto our ORM session
-        $this->storeORM();
         // Format some nice JSON
         $json = json_encode($data, JSON_PRETTY_PRINT);
         // Print the json
         $this->info($json);
     }
-
 
     /**
      * Displays the API response body
@@ -145,8 +93,6 @@ class APICommand extends ProfileCommand
      */
     public function displayResponseBody($response)
     {
-        // Hold onto our ORM session
-        $this->storeORM();
         // Verify that the API returned a 200 http code
         if (in_array($response->code, VALID_CODES, true)) {
             // Format some nice JSON
@@ -168,8 +114,6 @@ class APICommand extends ProfileCommand
      */
     public function displayResponseData($response)
     {
-        // Hold onto our ORM session
-        $this->storeORM();
         // Verify that the API returned a 200 http code
         if (in_array($response->code, VALID_CODES, true)) {
             // Format some nice JSON
@@ -191,8 +135,6 @@ class APICommand extends ProfileCommand
      */
     public function displayResponseCode($response)
     {
-        // Hold onto our ORM session
-        $this->storeORM();
         // Verify that the API returned a 200 http code
         if (in_array($response->code, VALID_CODES, true)) {
             // Format some nice JSON
@@ -206,6 +148,14 @@ class APICommand extends ProfileCommand
         }
     }
 
+
+    public function cacheORM($orm)
+    {
+        if ($orm->jwt !== $this->orm->jwt) {
+            Cache::put($this->sessionKey, serialize($orm), $this->profile->ttl);
+        }
+    }
+
     /**
      * Execute the console command.
      *
@@ -213,7 +163,42 @@ class APICommand extends ProfileCommand
      */
     public function handle(): void
     {
-        $this->initORM();
-        $this->storeORM();
+        // Get the active profile
+        $mProfile = $this->getActiveProfile();
+        if ($mProfile) {
+            // Build the session key
+            $mSessionKey = 'orm_session_' . $mProfile->id;
+            // Get any cached sessions
+            $mSession = Cache::get($mSessionKey);
+
+            // Store the profile and sessions key
+            $this->profile = $mProfile;
+            $this->sessionKey = $mSessionKey;
+
+            // If we have a session
+            if (!empty($mSession)) {
+                // Unserialize the ORM session data
+                $mORM = unserialize($mSession);
+            } else {
+                // Create a new session since we did not
+                $mORM = new ORM(
+                    $mProfile->secret,
+                    $mProfile->host,
+                    $mProfile->version,
+                    $mProfile->port,
+                    $mProfile->use_ssl
+                );
+                // Cache it for later
+                $this->cacheORM($mORM);
+            }
+
+            // Store the orm session on this object
+            $this->orm = $mORM;
+
+        } else {
+            // No active profile found!
+            $this->error('No active ORM profiles found. Create one.');
+            die();
+        }
     }
 }

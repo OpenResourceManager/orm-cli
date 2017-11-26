@@ -51,6 +51,8 @@ class AddressDeleteCommand extends APICommand
 
         $response = $addressClient->delete($id);
 
+        // Cache the current ORM object
+        $this->cacheORM($addressClient->getORM());
         $this->displayResponseCode($response);
     }
 }

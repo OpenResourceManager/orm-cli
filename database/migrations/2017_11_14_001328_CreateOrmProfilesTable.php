@@ -22,6 +22,7 @@ class CreateOrmProfilesTable extends Migration
             $table->integer('port')->default(80);
             $table->integer('version')->default(1);
             $table->boolean('use_ssl')->default(false);
+            $table->integer('ttl')->default(59);
             $table->timestamps();
         });
     }

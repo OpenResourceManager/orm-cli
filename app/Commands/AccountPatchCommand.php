@@ -114,6 +114,8 @@ class AccountPatchCommand extends APICommand
             $loadStatusID
         );
 
+        // Cache the current ORM object
+        $this->cacheORM($accountClient->getORM());
         $this->displayResponseBody($response);
     }
 }

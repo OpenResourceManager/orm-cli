@@ -19,6 +19,10 @@ if (DIRECTORY_SEPARATOR == '/') {
         // Define ORM DB Path for *nix
         define('ORM_DB_PATH', implode('/', [ORM_HOME, 'orm.sqlite']));
     }
+    if (!defined('ORM_CACHE_PATH')) {
+        // Define ORM Cache Path for *nix
+        define('ORM_CACHE_PATH', implode('/', [ORM_HOME, 'cache', 'data']));
+    }
 } else if (DIRECTORY_SEPARATOR == '\\') {
     $home = $_SERVER['USERPROFILE'];
     if (!defined('ORM_HOME')) {
@@ -28,6 +32,10 @@ if (DIRECTORY_SEPARATOR == '/') {
     if (!defined('ORM_DB_PATH')) {
         // Define ORM Home for win
         define('ORM_DB_PATH', implode('\\', [ORM_HOME, 'orm.sqlite']));
+    }
+    if (!defined('ORM_CACHE_PATH')) {
+        // Define ORM Cache Path for win
+        define('ORM_CACHE_PATH', implode('\\', [ORM_HOME, 'cache', 'data']));
     }
 }
 
