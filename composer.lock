@@ -1137,16 +1137,16 @@
         },
         {
             "name": "open-resource-manager/client-php",
-            "version": "v1.1.2",
+            "version": "v1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenResourceManager/client-php.git",
-                "reference": "1be0e67448efe7afe33ef8722233f8280584ba73"
+                "reference": "5782317c7b8f1a4ec28805cb8653ace1809c38a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenResourceManager/client-php/zipball/1be0e67448efe7afe33ef8722233f8280584ba73",
-                "reference": "1be0e67448efe7afe33ef8722233f8280584ba73",
+                "url": "https://api.github.com/repos/OpenResourceManager/client-php/zipball/5782317c7b8f1a4ec28805cb8653ace1809c38a2",
+                "reference": "5782317c7b8f1a4ec28805cb8653ace1809c38a2",
                 "shasum": ""
             },
             "require": {
@@ -1179,7 +1179,7 @@
                 "open resource manager",
                 "orm"
             ],
-            "time": "2017-11-26 02:58:45"
+            "time": "2017-11-27 02:18:23"
         },
         {
             "name": "psr/container",

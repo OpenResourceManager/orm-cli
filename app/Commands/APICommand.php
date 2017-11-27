@@ -162,10 +162,13 @@ class APICommand extends ProfileCommand
      */
     public function cacheORM($orm): void
     {
+        $sessionTTL = (intval($orm->authResponse->headers['x-jwt-ttl']) - 1);
+        if ($sessionTTL < 1) $sessionTTL = 1;
+
         if (empty($this->orm)) {
-            Cache::put($this->sessionKey, serialize($orm), $this->profile->ttl);
+            Cache::put($this->sessionKey, serialize($orm), $sessionTTL);
         } else if ($orm->jwt !== $this->orm->jwt) {
-            Cache::put($this->sessionKey, serialize($orm), $this->profile->ttl);
+            Cache::put($this->sessionKey, serialize($orm), $sessionTTL);
         }
     }
 
