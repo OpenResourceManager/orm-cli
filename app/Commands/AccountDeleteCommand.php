@@ -60,7 +60,7 @@ class AccountDeleteCommand extends APICommand
                 $response = null;
                 if (empty($id)) {
                     if (empty($identifier) && empty($username)) {
-                        $this->error('No identifying information found. Provide an id, identifier, or username.');
+                        $this->error('No identifying information found. Provide an ID, identifier, or username.');
                     } elseif (!empty($identifier)) {
                         $response = $accountClient->deleteFromIdentifier($identifier);
                     } elseif (!empty($username)) {
