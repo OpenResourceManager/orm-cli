@@ -52,6 +52,7 @@ class AccountDetachCommand extends APICommand
      * Execute the console command.
      *
      * @return void
+     * @throws \Exception
      */
     public function handle(): void
     {
