@@ -2,6 +2,7 @@
 
 namespace App\Commands;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -32,9 +33,9 @@ class ProfileCommand extends ORMCommand
     /**
      * Gets profiles
      *
-     * @return mixed
+     * @return Collection
      */
-    public function getProfiles(): mixed
+    public function getProfiles(): Collection
     {
         return DB::table('orm_profiles')->get();
     }
