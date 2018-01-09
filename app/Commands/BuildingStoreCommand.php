@@ -13,7 +13,7 @@ class BuildingStoreCommand extends APICommand
      */
     protected $signature = 'building:store
                             {code : Unique code for the building. Must be unique across all buildings.}
-                            {label : The building label, this should be user friendly and easy.}
+                            {label : The building label, this should be user friendly and easy to read.}
                             {--campus-id= : The id of the parent campus. This is required without the --campus-code argument.}
                             {--campus-code= : The code of the parent campus. This is required without the --campus-id argument. }
                             ';
