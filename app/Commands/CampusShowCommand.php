@@ -2,18 +2,17 @@
 
 namespace App\Commands;
 
+use OpenResourceManager\Client\Campus as CampusClient;
 
-use OpenResourceManager\Client\Building as BuildingClient;
-
-class BuildingShowCommand extends APICommand
+class CampusShowCommand extends APICommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'building:show {id? : The building ID (optional)}
-                            {--c|code= : The code of the building.}
+    protected $signature = 'campus:show {id? : The campus ID (optional)}
+                            {--c|code= : The code of the campus.}
                             {--p|page= : The page of results to display}
                             ';
 
@@ -29,7 +28,7 @@ class BuildingShowCommand extends APICommand
      *
      * @var string
      */
-    protected $description = 'Show a Building by it\'s ID, or code. Displays a paginated list when those parameters are omitted, a page parameter is available.';
+    protected $description = 'Show a Campus by it\'s ID, or code. Displays a paginated list when those parameters are omitted, a page parameter is available.';
 
     /**
      * AddressShowCommand constructor.
@@ -53,24 +52,24 @@ class BuildingShowCommand extends APICommand
         $code = $this->option('code');
         $page = $this->option('page');
 
-        $buildingClient = new BuildingClient($this->orm);
+        $campusClient = new CampusClient($this->orm);
         $response = null;
 
         if (empty($id)) {
             if (empty($code)) {
                 if (!empty($page)) {
-                    $buildingClient->setPage($page);
+                    $campusClient->setPage($page);
                 }
-                $response = $buildingClient->getList();
+                $response = $campusClient->getList();
             } elseif (!empty($username)) {
-                $response = $buildingClient->getFromCode($code);
+                $response = $campusClient->getFromCode($code);
             }
         } else {
-            $response = $buildingClient->get($id);
+            $response = $campusClient->get($id);
         }
 
         // Cache the current ORM object
-        $this->cacheORM($buildingClient->getORM());
+        $this->cacheORM($campusClient->getORM());
         $this->displayResponseBody($response);
     }
 }
