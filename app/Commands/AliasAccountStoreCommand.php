@@ -36,7 +36,7 @@ class AliasAccountStoreCommand extends APICommand
      *
      * @var string
      */
-    protected $description = 'Store alias account information. Creates, updates, restores, an alias account based on it\'s current status.';
+    protected $description = 'Store Alias Account information. Creates, updates, restores, an alias account based on it\'s current status.';
 
     /**
      * AccountStoreCommand constructor.
