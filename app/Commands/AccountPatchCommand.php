@@ -90,9 +90,9 @@ class AccountPatchCommand extends APICommand
         if (!empty($expiresAt)) $expiresAt = Carbon::parse($expiresAt)->timestamp;
         if (!empty($birthDate)) $birthDate = Carbon::parse($birthDate)->timestamp;
 
-        $accountClient = new AccountClient($this->orm);
+        $client = new AccountClient($this->orm);
 
-        $response = $accountClient->patch(
+        $response = $client->patch(
             $identifier,
             $username,
             $namePrefix,
@@ -114,7 +114,7 @@ class AccountPatchCommand extends APICommand
         );
 
         // Cache the current ORM object
-        $this->cacheORM($accountClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

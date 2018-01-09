@@ -52,24 +52,24 @@ class CampusShowCommand extends APICommand
         $code = $this->option('code');
         $page = $this->option('page');
 
-        $campusClient = new CampusClient($this->orm);
+        $client = new CampusClient($this->orm);
         $response = null;
 
         if (empty($id)) {
             if (empty($code)) {
                 if (!empty($page)) {
-                    $campusClient->setPage($page);
+                    $client->setPage($page);
                 }
-                $response = $campusClient->getList();
+                $response = $client->getList();
             } elseif (!empty($code)) {
-                $response = $campusClient->getFromCode($code);
+                $response = $client->getFromCode($code);
             }
         } else {
-            $response = $campusClient->get($id);
+            $response = $client->get($id);
         }
 
         // Cache the current ORM object
-        $this->cacheORM($campusClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

@@ -52,12 +52,12 @@ class CampusStoreCommand extends APICommand
 
         $code = $this->argument('code');
         $label = $this->argument('label');
-        $campusClient = new CampusClient($this->orm);
+        $client = new CampusClient($this->orm);
 
-        $response = $campusClient->store($code, $label);
+        $response = $client->store($code, $label);
 
         // Cache the current ORM object
-        $this->cacheORM($campusClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

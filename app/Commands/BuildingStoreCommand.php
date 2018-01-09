@@ -60,10 +60,10 @@ class BuildingStoreCommand extends APICommand
             $this->error('Provide a campus-id or campus-code');
             die();
         }
-        $buildingClient = new BuildingClient($this->orm);
-        $response = $buildingClient->store($code, $label, $campusID, $campusCode);
+        $client = new BuildingClient($this->orm);
+        $response = $client->store($code, $label, $campusID, $campusCode);
         // Cache the current ORM object
-        $this->cacheORM($buildingClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

@@ -50,21 +50,21 @@ class CountryDeleteCommand extends APICommand
         $id = $this->argument('id');
         $code = $this->option('code');
 
-        $countryClient = new CountryClient($this->orm);
+        $client = new CountryClient($this->orm);
         $response = null;
 
         if (empty($id)) {
             if (empty($code)) {
                 $this->error('No identifying information found. Provide an ID or code.');
             } else {
-                $response = $countryClient->deleteFromCode($code);
+                $response = $client->deleteFromCode($code);
             }
         } else {
-            $response = $countryClient->delete($id);
+            $response = $client->delete($id);
         }
 
         // Cache the current ORM object
-        $this->cacheORM($countryClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

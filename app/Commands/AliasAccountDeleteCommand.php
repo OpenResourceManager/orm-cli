@@ -51,21 +51,21 @@ class AliasAccountDeleteCommand extends APICommand
         $id = $this->argument('id');
         $username = $this->option('username');
 
-        $aliasClient = new AliasClient($this->orm);
+        $client = new AliasClient($this->orm);
         $response = null;
 
         if (empty($id)) {
             if (empty($username)) {
                 $this->error('No identifying information found. Provide an ID or username.');
             } else {
-                $response = $aliasClient->deleteFromUsername($username);
+                $response = $client->deleteFromUsername($username);
             }
         } else {
-            $response = $aliasClient->delete($id);
+            $response = $client->delete($id);
         }
 
         // Cache the current ORM object
-        $this->cacheORM($aliasClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

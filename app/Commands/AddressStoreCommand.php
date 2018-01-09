@@ -65,9 +65,9 @@ class AddressStoreCommand extends APICommand
 
         $response = null;
 
-        $addressClient = new AddressClient($this->orm);
+        $client = new AddressClient($this->orm);
 
-        $response = $addressClient->store(
+        $response = $client->store(
             $this->option('account-id'),
             $this->option('identifier'),
             $this->option('username'),
@@ -86,7 +86,7 @@ class AddressStoreCommand extends APICommand
         );
 
         // Cache the current ORM object
-        $this->cacheORM($addressClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

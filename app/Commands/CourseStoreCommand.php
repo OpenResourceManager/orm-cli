@@ -62,12 +62,12 @@ class CourseStoreCommand extends APICommand
             $this->error('Provide a department-id or department-code');
             die();
         }
-        $courseClient = new CourseClient($this->orm);
+        $client = new CourseClient($this->orm);
 
-        $response = $courseClient->store($code, $label, $level, $departmentID, $departmentCode);
+        $response = $client->store($code, $label, $level, $departmentID, $departmentCode);
 
         // Cache the current ORM object
-        $this->cacheORM($courseClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

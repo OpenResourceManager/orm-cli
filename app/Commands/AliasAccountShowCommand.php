@@ -53,24 +53,24 @@ class AliasAccountShowCommand extends APICommand
         $username = $this->option('username');
         $page = $this->option('page');
 
-        $aliasClient = new AliasClient($this->orm);
+        $client = new AliasClient($this->orm);
         $response = null;
 
         if (empty($id)) {
             if (empty($username)) {
                 if (!empty($page)) {
-                    $aliasClient->setPage($page);
+                    $client->setPage($page);
                 }
-                $response = $aliasClient->getList();
+                $response = $client->getList();
             } elseif (!empty($username)) {
-                $response = $aliasClient->getFromUsername($username);
+                $response = $client->getFromUsername($username);
             }
         } else {
-            $response = $aliasClient->get($id);
+            $response = $client->get($id);
         }
 
         // Cache the current ORM object
-        $this->cacheORM($aliasClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

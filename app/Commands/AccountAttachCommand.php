@@ -74,11 +74,11 @@ class AccountAttachCommand extends APICommand
 
         $responses = [];
 
-        $accountClient = new AccountClient($this->orm);
+        $client = new AccountClient($this->orm);
 
 
         if (!is_null($dutyID)) {
-            $r = $accountClient->attachToDuty($id, $identifier, $username, $dutyID, null);
+            $r = $client->attachToDuty($id, $identifier, $username, $dutyID, null);
             $responses['duty-id'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -86,7 +86,7 @@ class AccountAttachCommand extends APICommand
         }
 
         if (!is_null($dutyCode)) {
-            $r = $accountClient->attachToDuty($id, $identifier, $username, null, $dutyCode);
+            $r = $client->attachToDuty($id, $identifier, $username, null, $dutyCode);
             $responses['duty-code'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -94,7 +94,7 @@ class AccountAttachCommand extends APICommand
         }
 
         if (!is_null($courseID)) {
-            $r = $accountClient->attachToCourse($id, $identifier, $username, $courseID, null);
+            $r = $client->attachToCourse($id, $identifier, $username, $courseID, null);
             $responses['course-id'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -102,7 +102,7 @@ class AccountAttachCommand extends APICommand
         }
 
         if (!is_null($courseCode)) {
-            $r = $accountClient->attachToCourse($id, $identifier, $username, null, $courseCode);
+            $r = $client->attachToCourse($id, $identifier, $username, null, $courseCode);
             $responses['course-code'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -110,7 +110,7 @@ class AccountAttachCommand extends APICommand
         }
 
         if (!is_null($schoolID)) {
-            $r = $accountClient->attachToSchool($id, $identifier, $username, $schoolID, null);
+            $r = $client->attachToSchool($id, $identifier, $username, $schoolID, null);
             $responses['school-id'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -118,7 +118,7 @@ class AccountAttachCommand extends APICommand
         }
 
         if (!is_null($schoolCode)) {
-            $r = $accountClient->attachToSchool($id, $identifier, $username, null, $schoolCode);
+            $r = $client->attachToSchool($id, $identifier, $username, null, $schoolCode);
             $responses['school-code'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -126,7 +126,7 @@ class AccountAttachCommand extends APICommand
         }
 
         if (!is_null($departmentID)) {
-            $r = $accountClient->attachToDepartment($id, $identifier, $username, $departmentID, null);
+            $r = $client->attachToDepartment($id, $identifier, $username, $departmentID, null);
             $responses['department-id'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -134,7 +134,7 @@ class AccountAttachCommand extends APICommand
         }
 
         if (!is_null($departmentCode)) {
-            $r = $accountClient->attachToDepartment($id, $identifier, $username, null, $departmentCode);
+            $r = $client->attachToDepartment($id, $identifier, $username, null, $departmentCode);
             $responses['department-code'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -142,7 +142,7 @@ class AccountAttachCommand extends APICommand
         }
 
         if (!is_null($roomID)) {
-            $r = $accountClient->attachToRoom($id, $identifier, $username, $roomID, null);
+            $r = $client->attachToRoom($id, $identifier, $username, $roomID, null);
             $responses['room-id'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -150,7 +150,7 @@ class AccountAttachCommand extends APICommand
         }
 
         if (!is_null($roomCode)) {
-            $r = $accountClient->attachToRoom($id, $identifier, $username, null, $roomCode);
+            $r = $client->attachToRoom($id, $identifier, $username, null, $roomCode);
             $responses['room-code'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -158,7 +158,7 @@ class AccountAttachCommand extends APICommand
         }
 
         // Cache the current ORM object
-        $this->cacheORM($accountClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayData($responses);
     }
 }

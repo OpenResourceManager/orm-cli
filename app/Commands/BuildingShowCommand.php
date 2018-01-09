@@ -53,24 +53,24 @@ class BuildingShowCommand extends APICommand
         $code = $this->option('code');
         $page = $this->option('page');
 
-        $aliasClient = new BuildingClient($this->orm);
+        $client = new BuildingClient($this->orm);
         $response = null;
 
         if (empty($id)) {
             if (empty($code)) {
                 if (!empty($page)) {
-                    $aliasClient->setPage($page);
+                    $client->setPage($page);
                 }
-                $response = $aliasClient->getList();
+                $response = $client->getList();
             } elseif (!empty($code)) {
-                $response = $aliasClient->getFrom($code);
+                $response = $client->getFrom($code);
             }
         } else {
-            $response = $aliasClient->get($id);
+            $response = $client->get($id);
         }
 
         // Cache the current ORM object
-        $this->cacheORM($aliasClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

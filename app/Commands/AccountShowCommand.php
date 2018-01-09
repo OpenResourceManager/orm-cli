@@ -55,26 +55,26 @@ class AccountShowCommand extends APICommand
         $username = $this->option('username');
         $page = $this->option('page');
 
-        $accountClient = new AccountClient($this->orm);
+        $client = new AccountClient($this->orm);
         $response = null;
 
         if (empty($id)) {
             if (empty($identifier) && empty($username)) {
                 if (!empty($page)) {
-                    $accountClient->setPage($page);
+                    $client->setPage($page);
                 }
-                $response = $accountClient->getList();
+                $response = $client->getList();
             } elseif (!empty($identifier)) {
-                $response = $accountClient->getFromIdentifier($identifier);
+                $response = $client->getFromIdentifier($identifier);
             } elseif (!empty($username)) {
-                $response = $accountClient->getFromUsername($username);
+                $response = $client->getFromUsername($username);
             }
         } else {
-            $response = $accountClient->get($id);
+            $response = $client->get($id);
         }
 
         // Cache the current ORM object
-        $this->cacheORM($accountClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

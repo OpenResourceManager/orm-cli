@@ -48,12 +48,12 @@ class AddressDeleteCommand extends APICommand
 
         $id = $this->argument('id');
 
-        $addressClient = new AddressClient($this->orm);
+        $client = new AddressClient($this->orm);
 
-        $response = $addressClient->delete($id);
+        $response = $client->delete($id);
 
         // Cache the current ORM object
-        $this->cacheORM($addressClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseCode($response);
     }
 }

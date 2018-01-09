@@ -53,24 +53,24 @@ class CourseShowCommand extends APICommand
         $code = $this->option('code');
         $page = $this->option('page');
 
-        $courseClient = new CourseClient($this->orm);
+        $client = new CourseClient($this->orm);
         $response = null;
 
         if (empty($id)) {
             if (empty($code)) {
                 if (!empty($page)) {
-                    $courseClient->setPage($page);
+                    $client->setPage($page);
                 }
-                $response = $courseClient->getList();
+                $response = $client->getList();
             } elseif (!empty($code)) {
-                $response = $courseClient->getFromCode($code);
+                $response = $client->getFromCode($code);
             }
         } else {
-            $response = $courseClient->get($id);
+            $response = $client->get($id);
         }
 
         // Cache the current ORM object
-        $this->cacheORM($courseClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

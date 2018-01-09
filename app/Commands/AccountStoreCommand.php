@@ -94,9 +94,9 @@ class AccountStoreCommand extends APICommand
         if (!empty($expiresAt)) $expiresAt = Carbon::parse($expiresAt)->timestamp;
         if (!empty($birthDate)) $birthDate = Carbon::parse($birthDate)->timestamp;
 
-        $accountClient = new AccountClient($this->orm);
+        $client = new AccountClient($this->orm);
 
-        $response = $accountClient->store(
+        $response = $client->store(
             $identifier,
             $username,
             $namePrefix,
@@ -118,7 +118,7 @@ class AccountStoreCommand extends APICommand
         );
 
         // Cache the current ORM object
-        $this->cacheORM($accountClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

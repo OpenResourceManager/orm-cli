@@ -58,28 +58,28 @@ class AddressShowCommand extends APICommand
         $username = $this->option('username');
         $page = $this->option('page');
 
-        $addressClient = new AddressClient($this->orm);
+        $client = new AddressClient($this->orm);
         $response = null;
 
         if (empty($id)) {
             if (empty($identifier) && empty($username) && empty($accountID)) {
                 if (!empty($page)) {
-                    $addressClient->setPage($page);
+                    $client->setPage($page);
                 }
-                $response = $addressClient->getList();
+                $response = $client->getList();
             } elseif (!empty($accountID)) {
-                $response = $addressClient->getForAccount($accountID);
+                $response = $client->getForAccount($accountID);
             } elseif (!empty($identifier)) {
-                $response = $addressClient->getForIdentifier($identifier);
+                $response = $client->getForIdentifier($identifier);
             } elseif (!empty($username)) {
-                $response = $addressClient->getForUsername($username);
+                $response = $client->getForUsername($username);
             }
         } else {
-            $response = $addressClient->get($id);
+            $response = $client->get($id);
         }
 
         // Cache the current ORM object
-        $this->cacheORM($addressClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

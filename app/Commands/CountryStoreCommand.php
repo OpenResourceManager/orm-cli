@@ -52,12 +52,12 @@ class CountryStoreCommand extends APICommand
 
         $code = $this->argument('code');
         $label = $this->argument('label');
-        $countryClient = new CountryClient($this->orm);
+        $client = new CountryClient($this->orm);
 
-        $response = $countryClient->store($code, $label);
+        $response = $client->store($code, $label);
 
         // Cache the current ORM object
-        $this->cacheORM($countryClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

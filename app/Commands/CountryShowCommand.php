@@ -53,24 +53,24 @@ class CountryShowCommand extends APICommand
         $code = $this->option('code');
         $page = $this->option('page');
 
-        $countryClient = new CountryClient($this->orm);
+        $client = new CountryClient($this->orm);
         $response = null;
 
         if (empty($id)) {
             if (empty($code)) {
                 if (!empty($page)) {
-                    $countryClient->setPage($page);
+                    $client->setPage($page);
                 }
-                $response = $countryClient->getList();
+                $response = $client->getList();
             } elseif (!empty($code)) {
-                $response = $countryClient->getFromCode($code);
+                $response = $client->getFromCode($code);
             }
         } else {
-            $response = $countryClient->get($id);
+            $response = $client->get($id);
         }
 
         // Cache the current ORM object
-        $this->cacheORM($countryClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

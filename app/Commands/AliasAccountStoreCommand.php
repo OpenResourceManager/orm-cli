@@ -73,9 +73,9 @@ class AliasAccountStoreCommand extends APICommand
 
         if (!empty($expiresAt)) $expiresAt = Carbon::parse($expiresAt)->timestamp;
 
-        $aliasClient = new AliasClient($this->orm);
+        $client = new AliasClient($this->orm);
 
-        $response = $aliasClient->store(
+        $response = $client->store(
             $username,
             $aliasOwnerID,
             $aliasOwnerUsername,
@@ -87,7 +87,7 @@ class AliasAccountStoreCommand extends APICommand
         );
 
         // Cache the current ORM object
-        $this->cacheORM($aliasClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

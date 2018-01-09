@@ -54,7 +54,7 @@ class AccountDeleteCommand extends APICommand
         $username = $this->option('username');
         $jsonFile = $this->option('json-file');
 
-        $accountClient = new AccountClient($this->orm);
+        $client = new AccountClient($this->orm);
 
         if (empty($jsonFile)) {
                 $response = null;
@@ -62,12 +62,12 @@ class AccountDeleteCommand extends APICommand
                     if (empty($identifier) && empty($username)) {
                         $this->error('No identifying information found. Provide an ID, identifier, or username.');
                     } elseif (!empty($identifier)) {
-                        $response = $accountClient->deleteFromIdentifier($identifier);
+                        $response = $client->deleteFromIdentifier($identifier);
                     } elseif (!empty($username)) {
-                        $response = $accountClient->deleteFromUsername($username);
+                        $response = $client->deleteFromUsername($username);
                     }
                 } else {
-                    $response = $accountClient->delete($id);
+                    $response = $client->delete($id);
                 }
 
                 $this->displayResponseCode($response);
@@ -79,7 +79,7 @@ class AccountDeleteCommand extends APICommand
                 $i = trim($i, " \t\n\r\0\x0B,");
                 if (!empty($i)) {
                     // delete the identifier
-                    $response = $accountClient->deleteFromIdentifier($i);
+                    $response = $client->deleteFromIdentifier($i);
                     // store the identifier in an array under the response code
                     $data[$response->code][] = $i;
                     // sleep a bit to avoid spamming the API
@@ -87,7 +87,7 @@ class AccountDeleteCommand extends APICommand
                 }
             }
             // Cache the current ORM object
-            $this->cacheORM($accountClient->getORM());
+            $this->cacheORM($client->getORM());
             $this->displayData($data);
         }
     }

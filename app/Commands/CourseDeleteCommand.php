@@ -50,21 +50,21 @@ class CourseDeleteCommand extends APICommand
         $id = $this->argument('id');
         $code = $this->option('code');
 
-        $courseClient = new CourseClient($this->orm);
+        $client = new CourseClient($this->orm);
         $response = null;
 
         if (empty($id)) {
             if (empty($code)) {
                 $this->error('No identifying information found. Provide an ID or code.');
             } else {
-                $response = $courseClient->deleteFromCode($code);
+                $response = $client->deleteFromCode($code);
             }
         } else {
-            $response = $courseClient->delete($id);
+            $response = $client->delete($id);
         }
 
         // Cache the current ORM object
-        $this->cacheORM($courseClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayResponseBody($response);
     }
 }

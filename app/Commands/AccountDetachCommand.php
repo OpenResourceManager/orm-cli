@@ -75,11 +75,11 @@ class AccountDetachCommand extends APICommand
 
         $responses = [];
 
-        $accountClient = new AccountClient($this->orm);
+        $client = new AccountClient($this->orm);
 
 
         if (!is_null($dutyID)) {
-            $r = $accountClient->detachFromDuty($id, $identifier, $username, $dutyID, null);
+            $r = $client->detachFromDuty($id, $identifier, $username, $dutyID, null);
             $responses['duty-id'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -87,7 +87,7 @@ class AccountDetachCommand extends APICommand
         }
 
         if (!is_null($dutyCode)) {
-            $r = $accountClient->detachFromDuty($id, $identifier, $username, null, $dutyCode);
+            $r = $client->detachFromDuty($id, $identifier, $username, null, $dutyCode);
             $responses['duty-code'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -95,7 +95,7 @@ class AccountDetachCommand extends APICommand
         }
 
         if (!is_null($courseID)) {
-            $r = $accountClient->detachFromCourse($id, $identifier, $username, $courseID, null);
+            $r = $client->detachFromCourse($id, $identifier, $username, $courseID, null);
             $responses['course-id'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -103,7 +103,7 @@ class AccountDetachCommand extends APICommand
         }
 
         if (!is_null($courseCode)) {
-            $r = $accountClient->detachFromCourse($id, $identifier, $username, null, $courseCode);
+            $r = $client->detachFromCourse($id, $identifier, $username, null, $courseCode);
             $responses['course-code'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -111,7 +111,7 @@ class AccountDetachCommand extends APICommand
         }
 
         if (!is_null($schoolID)) {
-            $r = $accountClient->detachFromSchool($id, $identifier, $username, $schoolID, null);
+            $r = $client->detachFromSchool($id, $identifier, $username, $schoolID, null);
             $responses['school-id'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -119,7 +119,7 @@ class AccountDetachCommand extends APICommand
         }
 
         if (!is_null($schoolCode)) {
-            $r = $accountClient->detachFromSchool($id, $identifier, $username, null, $schoolCode);
+            $r = $client->detachFromSchool($id, $identifier, $username, null, $schoolCode);
             $responses['school-code'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -127,7 +127,7 @@ class AccountDetachCommand extends APICommand
         }
 
         if (!is_null($departmentID)) {
-            $r = $accountClient->detachFromDepartment($id, $identifier, $username, $departmentID, null);
+            $r = $client->detachFromDepartment($id, $identifier, $username, $departmentID, null);
             $responses['department-id'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -135,7 +135,7 @@ class AccountDetachCommand extends APICommand
         }
 
         if (!is_null($departmentCode)) {
-            $r = $accountClient->detachFromDepartment($id, $identifier, $username, null, $departmentCode);
+            $r = $client->detachFromDepartment($id, $identifier, $username, null, $departmentCode);
             $responses['department-code'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -143,7 +143,7 @@ class AccountDetachCommand extends APICommand
         }
 
         if (!is_null($roomID)) {
-            $r = $accountClient->detachFromRoom($id, $identifier, $username, $roomID, null);
+            $r = $client->detachFromRoom($id, $identifier, $username, $roomID, null);
             $responses['room-id'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -151,7 +151,7 @@ class AccountDetachCommand extends APICommand
         }
 
         if (!is_null($roomCode)) {
-            $r = $accountClient->detachFromRoom($id, $identifier, $username, null, $roomCode);
+            $r = $client->detachFromRoom($id, $identifier, $username, null, $roomCode);
             $responses['room-code'] = [
                 'response-code' => $r->code,
                 'response-body' => $r->body
@@ -159,7 +159,7 @@ class AccountDetachCommand extends APICommand
         }
 
         // Cache the current ORM object
-        $this->cacheORM($accountClient->getORM());
+        $this->cacheORM($client->getORM());
         $this->displayData($responses);
     }
 }
