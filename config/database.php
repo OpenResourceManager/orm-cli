@@ -12,6 +12,8 @@ return [
      */
     'with-migrations' => true,
 
+    'with-seeds' => false,
+
     /*
      * Here goes the application database connection configuration. By
      * default, we use `sqlite` as a driver. Feel free to use another

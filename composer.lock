@@ -4,25 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "34607697d3533bea7bd88b32bfd22547",
+    "hash": "174e6763eba464a7826c8aea023af7b2",
     "content-hash": "54b31276c3a08c5702a087de97ee45a5",
     "packages": [
         {
             "name": "doctrine/inflector",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "e11d84c6e018beedd929cff5220969a3c6d1d462"
+                "reference": "5527a48b7313d15261292c149e55e26eae771b0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/e11d84c6e018beedd929cff5220969a3c6d1d462",
-                "reference": "e11d84c6e018beedd929cff5220969a3c6d1d462",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/5527a48b7313d15261292c149e55e26eae771b0a",
+                "reference": "5527a48b7313d15261292c149e55e26eae771b0a",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0"
+                "php": "^7.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.2"
@@ -30,7 +30,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2.x-dev"
+                    "dev-master": "1.3.x-dev"
                 }
             },
             "autoload": {
@@ -72,7 +72,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2017-07-22 12:18:28"
+            "time": "2018-01-09 20:05:19"
         },
         {
             "name": "filp/whoops",
@@ -726,17 +726,51 @@
             "time": "2017-07-17 13:07:43"
         },
         {
-            "name": "laravel-zero/framework",
-            "version": "v4.0.21",
+            "name": "laravel-zero/foundation",
+            "version": "v5.5.28",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel-zero/framework.git",
-                "reference": "a47557fd3835ae34fcf750a074de7b97281b3641"
+                "url": "https://github.com/laravel-zero/foundation.git",
+                "reference": "aed9fd3d3090299f28c63e54b172d477fbb76e37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-zero/framework/zipball/a47557fd3835ae34fcf750a074de7b97281b3641",
-                "reference": "a47557fd3835ae34fcf750a074de7b97281b3641",
+                "url": "https://api.github.com/repos/laravel-zero/foundation/zipball/aed9fd3d3090299f28c63e54b172d477fbb76e37",
+                "reference": "aed9fd3d3090299f28c63e54b172d477fbb76e37",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\": "src/Illuminate/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "This is a mirror from illuminate/foundation.",
+            "keywords": [
+                "framework",
+                "laravel"
+            ],
+            "time": "2018-01-09 19:20:28"
+        },
+        {
+            "name": "laravel-zero/framework",
+            "version": "v4.0.22",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel-zero/framework.git",
+                "reference": "29e6053f5cf46a9eb2e57543e13fec52f930d9e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel-zero/framework/zipball/29e6053f5cf46a9eb2e57543e13fec52f930d9e6",
+                "reference": "29e6053f5cf46a9eb2e57543e13fec52f930d9e6",
                 "shasum": ""
             },
             "require": {
@@ -746,6 +780,7 @@
                 "illuminate/container": "5.5.*",
                 "illuminate/events": "5.5.*",
                 "illuminate/filesystem": "5.5.*",
+                "laravel-zero/foundation": "5.5.*",
                 "league/flysystem": "^1.0",
                 "mtdowling/cron-expression": "^1.2",
                 "nunomaduro/collision": "1.1.*",
@@ -787,7 +822,7 @@
                 "laravel",
                 "zero"
             ],
-            "time": "2018-01-05 22:41:46"
+            "time": "2018-01-09 20:50:40"
         },
         {
             "name": "league/flysystem",

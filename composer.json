@@ -43,6 +43,9 @@
     "scripts": {
         "post-create-project-cmd": [
             "php application app:rename"
+        ],
+        "build": [
+            "php orm app:build orm"
         ]
     },
     "bin": ["orm"]
