@@ -2,19 +2,17 @@
 
 namespace App\Commands;
 
+use OpenResourceManager\Client\Course as CourseClient;
 
-use OpenResourceManager\Client\Building as BuildingClient;
-
-class BuildingShowCommand extends APICommand
+class CourseDeleteCommand extends APICommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'building:show {id? : The building ID (optional)}
-                            {--c|code= : The code of the building.}
-                            {--p|page= : The page of results to display}
+    protected $signature = 'course:delete {id? : The course ID (optional)}
+                            {--c|code= : The code of the course.}
                             ';
 
     /**
@@ -29,7 +27,7 @@ class BuildingShowCommand extends APICommand
      *
      * @var string
      */
-    protected $description = 'Show an Building by it\'s ID, or code. Displays a paginated list when those parameters are omitted, a page parameter is available.';
+    protected $description = 'Deletes a Course by it\'s ID, or code.';
 
     /**
      * AddressShowCommand constructor.
@@ -51,26 +49,22 @@ class BuildingShowCommand extends APICommand
 
         $id = $this->argument('id');
         $code = $this->option('code');
-        $page = $this->option('page');
 
-        $aliasClient = new BuildingClient($this->orm);
+        $courseClient = new CourseClient($this->orm);
         $response = null;
 
         if (empty($id)) {
             if (empty($code)) {
-                if (!empty($page)) {
-                    $aliasClient->setPage($page);
-                }
-                $response = $aliasClient->getList();
-            } elseif (!empty($code)) {
-                $response = $aliasClient->getFrom($code);
+                $this->error('No identifying information found. Provide an ID or code.');
+            } else {
+                $response = $courseClient->deleteFromCode($code);
             }
         } else {
-            $response = $aliasClient->get($id);
+            $response = $courseClient->delete($id);
         }
 
         // Cache the current ORM object
-        $this->cacheORM($aliasClient->getORM());
+        $this->cacheORM($courseClient->getORM());
         $this->displayResponseBody($response);
     }
 }

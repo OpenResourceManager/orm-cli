@@ -61,7 +61,7 @@ class CampusShowCommand extends APICommand
                     $campusClient->setPage($page);
                 }
                 $response = $campusClient->getList();
-            } elseif (!empty($username)) {
+            } elseif (!empty($code)) {
                 $response = $campusClient->getFromCode($code);
             }
         } else {

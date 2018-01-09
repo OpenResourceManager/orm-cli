@@ -3,17 +3,17 @@
 namespace App\Commands;
 
 
-use OpenResourceManager\Client\Building as BuildingClient;
+use OpenResourceManager\Client\Course as CourseClient;
 
-class BuildingShowCommand extends APICommand
+class CourseShowCommand extends APICommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'building:show {id? : The building ID (optional)}
-                            {--c|code= : The code of the building.}
+    protected $signature = 'course:show {id? : The course ID (optional)}
+                            {--c|code= : The code of the course.}
                             {--p|page= : The page of results to display}
                             ';
 
@@ -29,7 +29,7 @@ class BuildingShowCommand extends APICommand
      *
      * @var string
      */
-    protected $description = 'Show an Building by it\'s ID, or code. Displays a paginated list when those parameters are omitted, a page parameter is available.';
+    protected $description = 'Show a Course by it\'s ID, or code. Displays a paginated list when those parameters are omitted, a page parameter is available.';
 
     /**
      * AddressShowCommand constructor.
@@ -53,24 +53,24 @@ class BuildingShowCommand extends APICommand
         $code = $this->option('code');
         $page = $this->option('page');
 
-        $aliasClient = new BuildingClient($this->orm);
+        $courseClient = new CourseClient($this->orm);
         $response = null;
 
         if (empty($id)) {
             if (empty($code)) {
                 if (!empty($page)) {
-                    $aliasClient->setPage($page);
+                    $courseClient->setPage($page);
                 }
-                $response = $aliasClient->getList();
+                $response = $courseClient->getList();
             } elseif (!empty($code)) {
-                $response = $aliasClient->getFrom($code);
+                $response = $courseClient->getFromCode($code);
             }
         } else {
-            $response = $aliasClient->get($id);
+            $response = $courseClient->get($id);
         }
 
         // Cache the current ORM object
-        $this->cacheORM($aliasClient->getORM());
+        $this->cacheORM($courseClient->getORM());
         $this->displayResponseBody($response);
     }
 }

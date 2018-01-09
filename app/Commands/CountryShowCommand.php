@@ -62,7 +62,7 @@ class CountryShowCommand extends APICommand
                     $countryClient->setPage($page);
                 }
                 $response = $countryClient->getList();
-            } elseif (!empty($username)) {
+            } elseif (!empty($code)) {
                 $response = $countryClient->getFromCode($code);
             }
         } else {
