@@ -60,3 +60,13 @@ extension=php_pdo_sqlite.dll
 ;extension=php_pgsql.dll
 ...
 ```
+
+# Related Software
+
+Some cool projects that this software relies on.
+
+* [Laravel](https://laravel.com)
+* [laravel-zero/laravel-zero](https://github.com/laravel-zero/laravel-zero)
+* [OpenResourceManager/Core](https://github.com/OpenResourceManager/Core)
+* [OpenResourceManager/client-php](https://github.com/OpenResourceManager/client-php)
+* [OpenResourceManager/client-laravel](https://github.com/OpenResourceManager/client-laravel)
