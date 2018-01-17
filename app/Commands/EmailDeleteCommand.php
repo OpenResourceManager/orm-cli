@@ -11,7 +11,7 @@ class EmailDeleteCommand extends APICommand
      *
      * @var string
      */
-    protected $signature = 'duty:delete {id? : The email ID (optional)}
+    protected $signature = 'email:delete {id? : The email ID (optional)}
                             {--a|address= : The address of the email.}
                             ';
 
