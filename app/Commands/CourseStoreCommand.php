@@ -59,7 +59,7 @@ class CourseStoreCommand extends APICommand
         $departmentID = $this->option('department-id');
         $departmentCode = $this->option('department-code');
         if (empty($departmentCode) && empty($departmentID)) {
-            $this->error('Provide a department-id or department-code');
+            $this->error('Provide a department-id option or department-code option.');
             die();
         }
         $client = new CourseClient($this->orm);
