@@ -727,16 +727,16 @@
         },
         {
             "name": "laravel-zero/foundation",
-            "version": "v5.5.28",
+            "version": "v5.5.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-zero/foundation.git",
-                "reference": "aed9fd3d3090299f28c63e54b172d477fbb76e37"
+                "reference": "a8796846156a5ae42abf0a773a72a0000ebcb985"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-zero/foundation/zipball/aed9fd3d3090299f28c63e54b172d477fbb76e37",
-                "reference": "aed9fd3d3090299f28c63e54b172d477fbb76e37",
+                "url": "https://api.github.com/repos/laravel-zero/foundation/zipball/a8796846156a5ae42abf0a773a72a0000ebcb985",
+                "reference": "a8796846156a5ae42abf0a773a72a0000ebcb985",
                 "shasum": ""
             },
             "require": {
@@ -757,20 +757,20 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-01-09 19:20:28"
+            "time": "2018-01-15 19:37:52"
         },
         {
             "name": "laravel-zero/framework",
-            "version": "v4.0.23",
+            "version": "v4.0.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-zero/framework.git",
-                "reference": "f45ff8169029750fae0b27ec264d119fd97b382e"
+                "reference": "5e5803ffc37ad2b3c26c78316c7e91650bff8a69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-zero/framework/zipball/f45ff8169029750fae0b27ec264d119fd97b382e",
-                "reference": "f45ff8169029750fae0b27ec264d119fd97b382e",
+                "url": "https://api.github.com/repos/laravel-zero/framework/zipball/5e5803ffc37ad2b3c26c78316c7e91650bff8a69",
+                "reference": "5e5803ffc37ad2b3c26c78316c7e91650bff8a69",
                 "shasum": ""
             },
             "require": {
@@ -822,7 +822,7 @@
                 "laravel",
                 "zero"
             ],
-            "time": "2018-01-09 23:15:20"
+            "time": "2018-01-12 20:41:02"
         },
         {
             "name": "league/flysystem",
@@ -1052,16 +1052,16 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v1.1.18",
+            "version": "v1.1.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "b117d73eadcf7dd490faeaaa80ddde2bdb03bf1f"
+                "reference": "6db3dc2d9a357a85534292d7a4f00e731d3c81aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/b117d73eadcf7dd490faeaaa80ddde2bdb03bf1f",
-                "reference": "b117d73eadcf7dd490faeaaa80ddde2bdb03bf1f",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/6db3dc2d9a357a85534292d7a4f00e731d3c81aa",
+                "reference": "6db3dc2d9a357a85534292d7a4f00e731d3c81aa",
                 "shasum": ""
             },
             "require": {
@@ -1070,6 +1070,7 @@
                 "symfony/console": "~2.8|~3.3|~4.0"
             },
             "require-dev": {
+                "laravel/framework": "5.5.*",
                 "phpunit/phpunit": "~6.5"
             },
             "type": "library",
@@ -1108,7 +1109,7 @@
                 "php",
                 "symfony"
             ],
-            "time": "2017-12-22 21:57:56"
+            "time": "2018-01-10 22:08:37"
         },
         {
             "name": "nunomaduro/laravel-desktop-notifier",
@@ -1177,16 +1178,16 @@
         },
         {
             "name": "open-resource-manager/client-php",
-            "version": "v1.1.4",
+            "version": "v1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenResourceManager/client-php.git",
-                "reference": "48ff89fead646b4a527bbb807fc0ad5dcd99a445"
+                "reference": "982154da227b0c8b42dba0930561bb2df4d6ddf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenResourceManager/client-php/zipball/48ff89fead646b4a527bbb807fc0ad5dcd99a445",
-                "reference": "48ff89fead646b4a527bbb807fc0ad5dcd99a445",
+                "url": "https://api.github.com/repos/OpenResourceManager/client-php/zipball/982154da227b0c8b42dba0930561bb2df4d6ddf6",
+                "reference": "982154da227b0c8b42dba0930561bb2df4d6ddf6",
                 "shasum": ""
             },
             "require": {
@@ -1219,7 +1220,7 @@
                 "open resource manager",
                 "orm"
             ],
-            "time": "2018-01-09 16:58:47"
+            "time": "2018-01-10 02:17:18"
         },
         {
             "name": "paragonie/random_compat",
@@ -2733,16 +2734,16 @@
         },
         {
             "name": "sebastian/comparator",
-            "version": "2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "b11c729f95109b56a0fe9650c6a63a0fcd8c439f"
+                "reference": "11c07feade1d65453e06df3b3b90171d6d982087"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/b11c729f95109b56a0fe9650c6a63a0fcd8c439f",
-                "reference": "b11c729f95109b56a0fe9650c6a63a0fcd8c439f",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/11c07feade1d65453e06df3b3b90171d6d982087",
+                "reference": "11c07feade1d65453e06df3b3b90171d6d982087",
                 "shasum": ""
             },
             "require": {
@@ -2793,7 +2794,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2017-12-22 14:50:35"
+            "time": "2018-01-12 06:34:42"
         },
         {
             "name": "sebastian/diff",
