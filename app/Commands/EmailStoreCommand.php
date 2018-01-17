@@ -57,7 +57,7 @@ class EmailStoreCommand extends APICommand
         $response = null;
 
         $address = $this->argument('address');
-        $id = (!empty($this->argument('account-id'))) ? $this->argument('account-id') : null;
+        $id = (!empty($this->option('account-id'))) ? $this->option('account-id') : null;
         $identifier = (!empty($this->option('identifier'))) ? $this->option('identifier') : null;
         $username = (!empty($this->option('username'))) ? $this->option('username') : null;
         $verificationCallback = $this->option('verification-callback');
