@@ -75,6 +75,11 @@ class AccountDetachCommand extends APICommand
 
         $responses = [];
 
+        if (empty($id) && empty($identifier) && empty($username)) {
+            $this->error('Provide an id argument, identifier option, or username option to disassociate.');
+            die();
+        }
+
         $client = new AccountClient($this->orm);
 
 

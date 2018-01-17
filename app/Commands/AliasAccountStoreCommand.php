@@ -63,7 +63,7 @@ class AliasAccountStoreCommand extends APICommand
         $aliasOwnerIdentifier = $this->option('alias-owner-identifier');
         $aliasOwnerUsername = $this->option('alias-owner-username');
         if (empty($aliasOwnerIdentifier) && empty($aliasOwnerID) && empty($aliasOwnerUsername)) {
-            $this->error('Provide an alias-owner-id, alias-owner-identifier, alias-owner-username');
+            $this->error('Provide an alias-owner-id option, alias-owner-identifier option, or alias-owner-username option to associate.');
             die();
         }
         $password = $this->option('password');

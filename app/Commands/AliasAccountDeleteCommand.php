@@ -56,7 +56,7 @@ class AliasAccountDeleteCommand extends APICommand
 
         if (empty($id)) {
             if (empty($username)) {
-                $this->error('No identifying information found. Provide an ID or username.');
+                $this->error('No identifying information found. Provide an ID argument or username option.');
             } else {
                 $response = $client->deleteFromUsername($username);
             }

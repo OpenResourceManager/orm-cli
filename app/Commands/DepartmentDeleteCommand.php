@@ -55,7 +55,7 @@ class DepartmentDeleteCommand extends APICommand
 
         if (empty($id)) {
             if (empty($code)) {
-                $this->error('No identifying information found. Provide an ID or code.');
+                $this->error('No identifying information found. Provide an ID argument or code option.');
             } else {
                 $response = $client->deleteFromCode($code);
             }

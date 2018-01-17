@@ -74,8 +74,12 @@ class AccountAttachCommand extends APICommand
 
         $responses = [];
 
-        $client = new AccountClient($this->orm);
+        if (empty($id) && empty($identifier) && empty($username)) {
+            $this->error('Provide an id argument, identifier option, or username option to associate.');
+            die();
+        }
 
+        $client = new AccountClient($this->orm);
 
         if (!is_null($dutyID)) {
             $r = $client->attachToDuty($id, $identifier, $username, $dutyID, null);
