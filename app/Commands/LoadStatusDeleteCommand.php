@@ -27,7 +27,7 @@ class LoadStatusDeleteCommand extends APICommand
      *
      * @var string
      */
-    protected $description = 'Deletes a Course by it\'s ID, or code.';
+    protected $description = 'Deletes a Load Status by it\'s ID, or code.';
 
     /**
      * AddressShowCommand constructor.
