@@ -18,7 +18,7 @@ class EmailStoreCommand extends APICommand
                             {--u|username= : Unique username string of the email owner. This is required without the account-id or identifier parameters.}
                             {--c|verification-callback= : A url to redirect verified users to after they verify their email.}
                             {--f|confirmation-from= : A friendly email address to send the verification email from. This allows for contextual verification messages.}
-                            {--u|upstream-app-name= : Name of the upstream app posting the email. This allows for contextual verification messages.}
+                            {--s|upstream-app-name= : Name of the upstream app posting the email. This allows for contextual verification messages.}
                             {--verified : Determines if this address should be stored as verified and skip the verification process.}
                             ';
 
