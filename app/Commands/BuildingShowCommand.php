@@ -63,7 +63,7 @@ class BuildingShowCommand extends APICommand
                 }
                 $response = $client->getList();
             } elseif (!empty($code)) {
-                $response = $client->getFrom($code);
+                $response = $client->getFromCode($code);
             }
         } else {
             $response = $client->get($id);
