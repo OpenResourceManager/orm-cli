@@ -12,7 +12,7 @@ class AliasAccountShowCommand extends APICommand
      *
      * @var string
      */
-    protected $signature = 'alias:show {id? : The alias account ID (optional)}
+    protected $signature = 'alias-account:show {id? : The alias account ID (optional)}
                             {--u|username= : The username of the alias account.}
                             {--p|page= : The page of results to display}
                             ';

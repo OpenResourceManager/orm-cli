@@ -11,7 +11,7 @@ class LoadStatusDeleteCommand extends APICommand
      *
      * @var string
      */
-    protected $signature = 'loads:delete {id? : The load status ID (optional)}
+    protected $signature = 'load-status:delete {id? : The load status ID (optional)}
                             {--c|code= : The code of the load status.}
                             ';
 

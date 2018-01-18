@@ -12,7 +12,7 @@ class LoadStatusShowCommand extends APICommand
      *
      * @var string
      */
-    protected $signature = 'loads:show {id? : The load status ID (optional)}
+    protected $signature = 'load-status:show {id? : The load status ID (optional)}
                             {--c|code= : The code of the load status.}
                             {--p|page= : The page of results to display}
                             ';

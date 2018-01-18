@@ -13,7 +13,7 @@ class AliasAccountStoreCommand extends APICommand
      *
      * @var string
      */
-    protected $signature = 'alias:store
+    protected $signature = 'alias-account:store
                             {username : Unique username for account. Must be unique across all accounts, alias accounts, and service accounts}
                             {--alias-owner-id= : The alias account owner ID. This is required without --alias-owner-identifier / --alias-owner-username}
                             {--alias-owner-identifier= : The alias account owner identifier. This is required without --alias-owner-id / --alias-owner-username}

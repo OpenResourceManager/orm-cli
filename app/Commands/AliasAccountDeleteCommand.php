@@ -12,7 +12,7 @@ class AliasAccountDeleteCommand extends APICommand
      *
      * @var string
      */
-    protected $signature = 'alias:delete {id? : The alias account ID (optional)}
+    protected $signature = 'alias-account:delete {id? : The alias account ID (optional)}
                             {--u|username= : The username of the alias account.}
                             ';
 

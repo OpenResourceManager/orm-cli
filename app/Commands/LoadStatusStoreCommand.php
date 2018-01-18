@@ -11,7 +11,7 @@ class LoadStatusStoreCommand extends APICommand
      *
      * @var string
      */
-    protected $signature = 'loads:store
+    protected $signature = 'load-status:store
                             {code : Unique code for the load status. Must be unique across all load statuses.}
                             {label : The load status label, this should be user friendly and easy to read.}
                             ';
