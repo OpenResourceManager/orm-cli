@@ -15,13 +15,13 @@ class AliasAccountStoreCommand extends APICommand
      */
     protected $signature = 'alias-account:store
                             {username : Unique username for account. Must be unique across all accounts, alias accounts, and service accounts}
-                            {--alias-owner-id= : The alias account owner ID. This is required without --alias-owner-identifier / --alias-owner-username}
-                            {--alias-owner-identifier= : The alias account owner identifier. This is required without --alias-owner-id / --alias-owner-username}
-                            {--alias-owner-username= : The alias account owner username. This is required without --alias-owner-id / --alias-owner-identifier}
-                            {--password= : The initial password assigned to this account when it is created. This is only available to API consumers who have classified permissions}
-                            {--should-propagate-password : If this is set and a password parameter is supplied third party integrations such as Active Directory will use this password for the account within their systems}
-                            {--expires-at= : The account\'s expiration date in string format(yyyy-mm-dd hh:mm) or (yyyy-mm-dd)}
-                            {--disabled : Determines if this account is disabled}
+                            {--o|owner-id= : The alias account owner ID. This is required without --owner-identifier / --owner-username}
+                            {--i|owner-identifier= : The alias account owner identifier. This is required without --owner-id / --owner-username}
+                            {--u|owner-username= : The alias account owner username. This is required without --owner-id / --owner-identifier}
+                            {--p|password= : The initial password assigned to this account when it is created. This is only available to API consumers who have classified permissions}
+                            {--s|should-propagate-password : If this is set and a password parameter is supplied third party integrations such as Active Directory will use this password for the account within their systems}
+                            {--e|expires-at= : The account\'s expiration date in string format(yyyy-mm-dd hh:mm) or (yyyy-mm-dd)}
+                            {--d|disabled : Determines if this account is disabled}
                             ';
 
     /**
@@ -59,11 +59,11 @@ class AliasAccountStoreCommand extends APICommand
         $response = null;
 
         $username = $this->argument('username');
-        $aliasOwnerID = $this->option('alias-owner-id');
-        $aliasOwnerIdentifier = $this->option('alias-owner-identifier');
-        $aliasOwnerUsername = $this->option('alias-owner-username');
+        $aliasOwnerID = $this->option('owner-id');
+        $aliasOwnerIdentifier = $this->option('owner-identifier');
+        $aliasOwnerUsername = $this->option('owner-username');
         if (empty($aliasOwnerIdentifier) && empty($aliasOwnerID) && empty($aliasOwnerUsername)) {
-            $this->error('Provide an alias-owner-id option, alias-owner-identifier option, or alias-owner-username option to associate.');
+            $this->error('Provide an owner-id option, owner-identifier option, or owner-username option to associate.');
             die();
         }
         $password = $this->option('password');
