@@ -727,16 +727,16 @@
         },
         {
             "name": "laravel-zero/foundation",
-            "version": "v5.5.29",
+            "version": "v5.5.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-zero/foundation.git",
-                "reference": "a8796846156a5ae42abf0a773a72a0000ebcb985"
+                "reference": "7f45551eceee259bdf5dd8600f755dff3112f1db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-zero/foundation/zipball/a8796846156a5ae42abf0a773a72a0000ebcb985",
-                "reference": "a8796846156a5ae42abf0a773a72a0000ebcb985",
+                "url": "https://api.github.com/repos/laravel-zero/foundation/zipball/7f45551eceee259bdf5dd8600f755dff3112f1db",
+                "reference": "7f45551eceee259bdf5dd8600f755dff3112f1db",
                 "shasum": ""
             },
             "require": {
@@ -757,7 +757,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-01-15 19:37:52"
+            "time": "2018-01-21 12:40:47"
         },
         {
             "name": "laravel-zero/framework",
@@ -1052,16 +1052,16 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v1.1.20",
+            "version": "v1.1.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "6db3dc2d9a357a85534292d7a4f00e731d3c81aa"
+                "reference": "80f46ba5646ede4c6f6071e48a4b476a6b5c740f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/6db3dc2d9a357a85534292d7a4f00e731d3c81aa",
-                "reference": "6db3dc2d9a357a85534292d7a4f00e731d3c81aa",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/80f46ba5646ede4c6f6071e48a4b476a6b5c740f",
+                "reference": "80f46ba5646ede4c6f6071e48a4b476a6b5c740f",
                 "shasum": ""
             },
             "require": {
@@ -1109,7 +1109,7 @@
                 "php",
                 "symfony"
             ],
-            "time": "2018-01-10 22:08:37"
+            "time": "2018-01-18 22:43:42"
         },
         {
             "name": "nunomaduro/laravel-desktop-notifier",

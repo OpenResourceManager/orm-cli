@@ -20,7 +20,7 @@ On Ubuntu utilize apt to get our prerequisites.
 sudo apt-get install software-properties-common
 sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update
-apt-get install php7.1 php7.1-curl
+apt-get install php7.1 php7.1-curl php7.1-sqlite3
 ```
 
 ### Debian >= v8 (Jessie and later) Install
@@ -32,7 +32,7 @@ apt-get install apt-transport-https lsb-release ca-certificates
 wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
 apt-get update
-apt-get install php7.1 php7.1-curl
+apt-get install php7.1 php7.1-curl php7.1-sqlite3
 ```
 
 ###### Note: PHP 7.1 can be compiled from source for Debian 7 (Wheezey), but that is outside the scope of these directions.
