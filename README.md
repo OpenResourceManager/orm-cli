@@ -2,11 +2,16 @@
 
 ORM access right from your shell!
 
-# Installation
+## Installation
 
 See [install.md](docs/install.md).
 
-# Related Software
+## Usage
+
+* See the [Command Reference](docs/commands.md).
+* See some common usage [Examples](docs/examples.md).
+
+## Related Software
 
 Some cool projects that this software relies on.
 
