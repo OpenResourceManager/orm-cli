@@ -1,4 +1,4 @@
-# Incomplete
+# ORM CLI
 
 ORM access right from your shell!
 
