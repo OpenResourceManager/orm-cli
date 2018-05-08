@@ -1,6 +1,6 @@
 # Installation
 
-The ORM CLI relies on PHP 7.1, sqlite, and php-curl.
+The ORM CLI relies on PHP >= 7.1.3, sqlite, and php-curl.
 
 ## Prerequisites
 
@@ -44,7 +44,8 @@ To install php 7.1 on Windows utilize [Chocolatey](https://chocolatey.org/).
 Install php
 
 ```shell
-choco install php -y
+choco install php --version 7.1.17 -y;
+choco pin add -n=php --version 7.1.17;
 ```
 
 Enable extensions:

@@ -8,13 +8,6 @@
 
 return [
     /*
-     * If true, migrations commands will be available.
-     */
-    'with-migrations' => true,
-
-    'with-seeds' => false,
-
-    /*
      * Here goes the application database connection configuration. By
      * default, we use `sqlite` as a driver. Feel free to use another
      * driver, be sure to check the database component documentation.

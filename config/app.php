@@ -10,17 +10,17 @@ return [
     'name' => 'Open Resource Manager CLI',
 
     /*
-     * Here goes the application version.
-     */
-    'version' => 'v0.1.0',
-
-    /*
-     * Here goes the application default command. By default
-     * the list of commands will appear. All commands
-     * application commands will be auto-detected.
-     *
-     * 'default-command' => App\Commands\HelloCommand::class,
+    |--------------------------------------------------------------------------
+    | Application Version
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the "version" your application is currently running
+    | in. You may want to follow the "Semantic Versioning" - Given a version
+    | number MAJOR.MINOR.PATCH when an update happens: https://semver.org.
+    |
     */
+    'version' => app('git.version'),
+
 
     /*
      * If true, development commands won't be available as the app
@@ -29,20 +29,18 @@ return [
     'production' => false,
 
     /*
-     * If true, scheduler commands will be available.
-     */
-    'with-scheduler' => false,
-
-    /*
      * Structure to build into app
      */
     'structure' => [
         'app/',
         'bootstrap/',
         'vendor/',
+        'docs/',
         'config/',
         'database/',
         'LICENSE',
+        'builder-stub',
+        '.env',
         'README.md',
         'composer.json'
     ],
