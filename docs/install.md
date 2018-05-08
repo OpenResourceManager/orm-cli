@@ -39,21 +39,26 @@ apt-get install php7.1 php7.1-curl php7.1-sqlite3
 
 ### Windows Install 
 
-To install php 7.1 on Windows utilize [Chocolatey](https://chocolatey.org/).
+##### Install php
 
-Install php
+To install php 7.1 on Windows utilize [Chocolatey](https://chocolatey.org/).
 
 ```shell
 choco install php --version 7.1.17 -y
 choco pin add -n=php --version 7.1.17
 ```
 
-Enable extensions:
+##### Configure TLS, Curl, & Sqlite:
+
+Download the curl CA Cert: [https://curl.haxx.se/ca/cacert.pem](https://curl.haxx.se/ca/cacert.pem)
+
+Move the cert file to `C:\tools\cacert.pem`
 
 uncomment the following lines in `C:\tools\php71\php.ini`
 
 * `extension=php_curl.dll` - curl
 * `extension=php_pdo_sqlite.dll` - sqlite pdo
+* `curl.cainfo=` - Change this to `curl.cainfo="C:\tools\cacert.pem"`
 
 Example:
 
@@ -66,6 +71,11 @@ extension=php_curl.dll
 ;extension=php_pdo_pgsql.dll
 extension=php_pdo_sqlite.dll
 ;extension=php_pgsql.dll
+...
+[curl]
+; A default value for the CURLOPT_CAINFO option. This is required to be an
+; absolute path.
+curl.cainfo="C:\tools\cacert.pem"
 ...
 ```
 
