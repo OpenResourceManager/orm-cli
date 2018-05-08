@@ -44,8 +44,8 @@ To install php 7.1 on Windows utilize [Chocolatey](https://chocolatey.org/).
 Install php
 
 ```shell
-choco install php --version 7.1.17 -y;
-choco pin add -n=php --version 7.1.17;
+choco install php --version 7.1.17 -y
+choco pin add -n=php --version 7.1.17
 ```
 
 Enable extensions:
