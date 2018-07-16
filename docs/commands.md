@@ -4,7 +4,7 @@ To see a few examples check out the [Command Examples](examples.md) page.
 
 ---
 
-Open Resource Manager CLI v0.2.0
+Open Resource Manager CLI v0.2.1
 
 ```bash
 USAGE: orm <command> [options] [arguments]
