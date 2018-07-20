@@ -53,10 +53,9 @@ class APICommand extends ProfileCommand
      * Displays the entire API response
      *
      * @param $response
-     * @throws Exception
-     * @return void
+     * @return integer
      */
-    public function displayResponse($response): void
+    public function displayResponse($response): int
     {
         // Verify that the API returned a 200 http code
         if (in_array($response->code, VALID_CODES, true)) {
@@ -64,10 +63,12 @@ class APICommand extends ProfileCommand
             $json = json_encode($response, JSON_PRETTY_PRINT);
             // Print the json
             $this->info($json);
+            return 0;
         } else {
             // Throw an exception if we did not get 200 back
             // display the http code with the message from the API.
-            throw new Exception($response->body->message, $response->code);
+            $this->error($response->body->message);
+            return intval($response->code);
         }
     }
 
@@ -75,24 +76,24 @@ class APICommand extends ProfileCommand
      * Displays raw data
      *
      * @param $data
-     * @return void
+     * @return integer
      */
-    public function displayData($data): void
+    public function displayData($data): int
     {
         // Format some nice JSON
         $json = json_encode($data, JSON_PRETTY_PRINT);
         // Print the json
         $this->info($json);
+        return 0;
     }
 
     /**
      * Displays the API response body
      *
      * @param $response
-     * @throws Exception
-     * @return void
+     * @return integer
      */
-    public function displayResponseBody($response): void
+    public function displayResponseBody($response): int
     {
         // Verify that the API returned a 200 http code
         if (in_array($response->code, VALID_CODES, true)) {
@@ -100,10 +101,12 @@ class APICommand extends ProfileCommand
             $json = json_encode($response->body, JSON_PRETTY_PRINT);
             // Print the json
             $this->info($json);
+            return 0;
         } else {
             // Throw an exception if we did not get 200 back
             // display the http code with the message from the API.
-            throw new Exception($response->body->message, $response->code);
+            $this->error($response->body->message);
+            return intval($response->code);
         }
     }
 
@@ -111,10 +114,9 @@ class APICommand extends ProfileCommand
      * Displays the API response data
      *
      * @param $response
-     * @throws Exception
-     * @return void
+     * @return integer
      */
-    public function displayResponseData($response): void
+    public function displayResponseData($response): int
     {
         // Verify that the API returned a 200 http code
         if (in_array($response->code, VALID_CODES, true)) {
@@ -122,10 +124,12 @@ class APICommand extends ProfileCommand
             $json = json_encode($response->body->data, JSON_PRETTY_PRINT);
             // Print the json
             $this->info($json);
+            return 0;
         } else {
             // Throw an exception if we did not get 200 back
             // display the http code with the message from the API.
-            throw new Exception($response->body->message, $response->code);
+            $this->error($response->body->message);
+            return intval($response->code);
         }
     }
 
@@ -133,10 +137,9 @@ class APICommand extends ProfileCommand
      * Displays the API response code
      *
      * @param $response
-     * @throws Exception
-     * @return void
+     * @return integer
      */
-    public function displayResponseCode($response): void
+    public function displayResponseCode($response): int
     {
         // Verify that the API returned a 200 http code
         if (in_array($response->code, VALID_CODES, true)) {
@@ -144,10 +147,12 @@ class APICommand extends ProfileCommand
             $json = json_encode((object)['code' => $response->code], JSON_PRETTY_PRINT);
             // Print the json
             $this->info($json);
+            return 0;
         } else {
             // Throw an exception if we did not get 200 back
             // display the http code with the message from the API.
-            throw new Exception($response->body->message, $response->code);
+            $this->error($response->body->message);
+            return intval($response->code);
         }
     }
 
