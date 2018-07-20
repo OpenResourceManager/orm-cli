@@ -4,15 +4,16 @@ To see a few examples check out the [Command Examples](examples.md) page.
 
 ---
 
-Open Resource Manager CLI v0.2.1
+Open Resource Manager CLI v0.2.3
 
 ```bash
-USAGE: orm <command> [options] [arguments]
+  USAGE: orm <command> [options] [arguments]
 
   migrate                Run the database migrations
   verify                 Verify an object with a verification token.
 
   account:attach         Attach an ORM Account by it's id, identifier, or username to a duty, course, school, department, or room by their ID or code.
+  account:check          Show an ORM Account by it's ID, identifier, or username. Displays a paginated list when those parameters are omitted, a page parameter is available.
   account:delete         Delete an ORM Account by it's id, identifier, or username.
   account:detach         Detach an ORM Account by it's id, identifier, or username to a duty, course, school, department, or room by their ID or code.
   account:patch          Update existing account information based in it's identifier.

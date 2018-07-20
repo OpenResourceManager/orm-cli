@@ -151,11 +151,32 @@ class APICommand extends ProfileCommand
         } else {
             // Throw an exception if we did not get 200 back
             // display the http code with the message from the API.
-            $this->error($response->body->message);
+            $json = json_encode((object)['code' => $response->code], JSON_PRETTY_PRINT);
+            $this->error($json);
             return intval($response->code);
         }
     }
 
+    /**
+     * Displays a textual representation of the account status
+     *
+     * @param $response
+     * @return integer
+     */
+    public function displayCheckResult($response): int
+    {
+        // Verify that the API returned a 200 http code
+        if (in_array($response->code, VALID_CODES, true)) {
+            // Print the json
+            $this->info("Account is valid!");
+            return 0;
+        } else {
+            // Throw an exception if we did not get 200 back
+            // display the http code with the message from the API.
+            $this->error($response->body->message);
+            return intval($response->code);
+        }
+    }
 
     /**
      * Cache ORM object
