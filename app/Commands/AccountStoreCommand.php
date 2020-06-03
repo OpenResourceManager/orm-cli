@@ -26,8 +26,6 @@ class AccountStoreCommand extends APICommand
                             {--primary-duty-code= : The primary duty Code for this account. This is required without --primary-duty-id}
                             {--load-status-id= : The load status ID for this account}
                             {--load-status-code= : The load status code for this account}
-                            {--ssn= : The last four digits of the account owner\'s social security number. This is only available to API consumers who have classified permissions}
-                            {--password= : The initial password assigned to this account when it is created. This is only available to API consumers who have classified permissions}
                             {--should-propagate-password : If this is set and a password parameter is supplied third party integrations such as Active Directory will use this password for the account within their systems}
                             {--expires-at= : The account\'s expiration date in string format(yyyy-mm-dd hh:mm) or (yyyy-mm-dd)}
                             {--disabled : Determines if this account is disabled}
@@ -80,8 +78,6 @@ class AccountStoreCommand extends APICommand
         }
         $loadStatusID = $this->option('load-status-id');
         $loadStatusCode = $this->option('load-status-code');
-        $ssn = $this->option('ssn');
-        $password = $this->option('password');
         $shouldPropagatePassword = $this->option('should-propagate-password');
         $expiresAt = $this->option('expires-at');
         $disabled = $this->option('disabled');
@@ -107,9 +103,7 @@ class AccountStoreCommand extends APICommand
             $namePhonetic,
             $primaryDutyID,
             $primaryDutyCode,
-            $ssn,
             $shouldPropagatePassword,
-            $password,
             $expiresAt,
             $disabled,
             $birthDate,
